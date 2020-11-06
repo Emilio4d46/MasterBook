@@ -1,7 +1,11 @@
 # Table of contents
 # Learn more at https://jupyterbook.org/customize/toc.html
 - file: intro
-- file: maths1
-  sections:
-    - file: markdown
-    - file: notebooks
+
+- part: Understanding the Paper
+  chapters:
+  - file: scatter_maths
+- part: Mathematical Supplementals
+  chapters:
+  - file: taylor_facts
+

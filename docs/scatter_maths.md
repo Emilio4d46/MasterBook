@@ -30,7 +30,7 @@ $$L:=L_0-\eta(x)$$
 
 The sources can be seen to be incident anywhere on the boundary of $\Omega$ and denoted as $s$ and be parameterised by $s\in[0,2\pi)$.  Furthermore, we can represent each source wave as an incoming plane wave
 
-$$e^{i\omega\hat{s}x}$$
+$$e^{i\omega\hat{s} \cdot x} $$
 
 with $\hat{s} = (\cos(x), \sin(x))$ or $\hat{s} \in \mathbb{S}^1$ being the direction of incidence. We denote the scattered wave by $u^s(x)$ which satisfies the following equation.
 
@@ -105,6 +105,8 @@ $$d_1(m,h) = \int_{0}^{1} \int_{0}^{2\pi} K(m,h,\rho,\theta)\cdot \eta(\rho,\the
 
 As the external velocity field is constant, $c_0=1$, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to $m$ and $h$.[^3]
 This allows us to simplify the system significantly.
+
+=======================
 
 [^1]: This is related to the boundary conditions and the fact that the interior and exterior solution should be continuous at the boundary when we expand. However, I am still unsure as to how this relates to the expression (1). I am still making my way through Taylor but if there is a more elegant explanation or resource please do link it to me.
 
