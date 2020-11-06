@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Solving Wave Scattering using Machine Learning</title>
+    <title>Key Facts and Theorems &#8212; Solving Wave Scattering using Machine Learning</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -55,8 +55,9 @@
         const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Derivation of Foundational Equations" href="scatter_maths.html" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -113,9 +114,9 @@
   Mathematical Supplementals
  </span>
 </p>
-<ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="taylor_facts.html">
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Key Facts and Theorems
   </a>
  </li>
@@ -157,6 +158,18 @@
             class="fas fa-download"></i></button>
 
     
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/taylor_facts.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
 </div>
         <!-- Source interaction buttons -->
 
@@ -169,7 +182,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftaylor_facts.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -197,13 +210,53 @@
         
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="section" id="key-facts-and-theorems">
+<h1>Key Facts and Theorems<a class="headerlink" href="#key-facts-and-theorems" title="Permalink to this headline">¶</a></h1>
+<p>To get a good foundation in the mathematics behind wave scattering and their inverse problems, we will be reading through the book “Partial Differential Equations 2 by Michael E. Taylor” <a class="footnote-reference brackets" href="#id2" id="id1">2</a> , as well as notes  from a course on Linear Partial Differential Equations taught by Dr I Kamotski during term 1, 2019 at UCL.</p>
+<p>We will most notably follow chapter 9, Scattering by Objects, and creating a resource of important and useful theorems and facts in order to build up a base of useful knowledge.</p>
+<p>We will first lay down the fundamental equations relating to scattering.</p>
+<p>Let <span class="math notranslate nohighlight">\(K \subset \mathbb{R}^3\)</span> with a smooth boundary and <span class="math notranslate nohighlight">\(\Omega := K^c\)</span> being a connected complement. Let <span class="math notranslate nohighlight">\(f(x) \in H^s(K)\)</span> be a given function from the Sobolev Space of positive index <span class="math notranslate nohighlight">\(s\)</span> and let <span class="math notranslate nohighlight">\(k&gt;0\)</span>, we wish to solve the following:</p>
+<div class="math notranslate nohighlight">
+\[(\Delta + k^2)v = 0 \text{ on }\Omega\tag{1}\]</div>
+<div class="math notranslate nohighlight">
+\[v = f \text{ on }\partial K\tag{2}\]</div>
+<p>With the typical Somerfield radiation boundary condition applied</p>
+<div class="math notranslate nohighlight">
+\[\left.\lvert{rv(x) \leq C}\right.\rvert \text{ , }\lim_{r\to\infty}r\left(\frac{\partial}{\partial r} - ik\right)v=0 \tag{3}\]</div>
+<p>With <span class="math notranslate nohighlight">\(r = |x|\)</span>, with <span class="math notranslate nohighlight">\(v\)</span> satisfying</p>
+<div class="math notranslate nohighlight">
+\[v(x)=\int_{\partial K} \left[f(y)\frac{\partial g}{\partial v_y}(x,t,k) - g(x,y,k)\frac{\partial v}{\partial v}(y)\right]dS(y)\tag{4}\]</div>
+<p>For <span class="math notranslate nohighlight">\(x \in \Omega\)</span> and <span class="math notranslate nohighlight">\(g(x,y,k)\)</span> being the Green Function.</p>
+<p><strong>Fact 1:</strong> Given <span class="math notranslate nohighlight">\(k&gt;0\)</span>, if <span class="math notranslate nohighlight">\(v\)</span> satisfies <span class="math notranslate nohighlight">\((1)-(3)\)</span> with <span class="math notranslate nohighlight">\(f=0\)</span>, then <span class="math notranslate nohighlight">\(v=0\)</span></p>
+<p><strong>Fact 2:</strong> If <span class="math notranslate nohighlight">\(v\)</span> satisfies <span class="math notranslate nohighlight">\((\Delta - k^2)v=0\)</span> for <span class="math notranslate nohighlight">\(|x|\geq  R_0\)</span> and $<span class="math notranslate nohighlight">\(v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty\)</span><span class="math notranslate nohighlight">\( holds, then for \)</span>v(x)=0<span class="math notranslate nohighlight">\( for \)</span>|x|\geq R_0<span class="math notranslate nohighlight">\(. With \)</span>S_R<span class="math notranslate nohighlight">\( being the sphere of radius \)</span>R$.</p>
+<p>=======================</p>
+<hr class="docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dd><p>Taylor, M. (2011) Partial Differential Equations II, 2nd ed. New York: Springer</p>
+</dd>
+</dl>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
@@ -213,6 +266,7 @@
     
     <div class='prev-next-bottom'>
         
+    <a class='left-prev' id="prev-link" href="scatter_maths.html" title="previous page">Derivation of Foundational Equations</a>
 
     </div>
     <footer class="footer mt-5 mt-md-0">
