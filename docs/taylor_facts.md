@@ -25,7 +25,11 @@ For $x \in \Omega$ and $g(x,y,k)$ being the Green Function.
 
 **Fact 1:** Given $k>0$, if $v$ satisfies $(1)-(3)$ with $f=0$, then $v=0$
 
-**Fact 2:** If $v$ satisfies $(\Delta - k^2)v=0$ for $|x|\geq  R_0$ and $$v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty$$ holds, then for $v(x)=0$ for $|x|\geq R_0$. With $S_R$ being the sphere of radius $R$.
+**Fact 2:** If $v$ satisfies $(\Delta - k^2)v=0$ for $|x|\geq  R_0$ and
+
+$$v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty$$
+
+holds, then for $v(x)=0$ for $|x|\geq R_0$. With $S_R$ being the sphere of radius $R$.
 
 **Theorem 3:** For $\epsilon > 0$, if we perturbate equation $(1)$ by $k \to k + i\epsilon$, with $v_{\epsilon}$ being the unique solution to the perturbated equation and $f_{\epsilon}$ being the boundary condition of the perturbated equation.
 If $s \geq \frac{3}{2}$, and suppose that as $\epsilon \to 0$
