@@ -212,7 +212,7 @@
                 
   <div class="section" id="key-facts-and-theorems">
 <h1>Key Facts and Theorems<a class="headerlink" href="#key-facts-and-theorems" title="Permalink to this headline">¶</a></h1>
-<p>To get a good foundation in the mathematics behind wave scattering and their inverse problems, we will be reading through the book “Partial Differential Equations 2 by Michael E. Taylor” <a class="footnote-reference brackets" href="#id2" id="id1">2</a> , as well as notes  from a course on Linear Partial Differential Equations taught by Dr I Kamotski during term 1, 2019 at UCL.</p>
+<p>To get a good foundation in the mathematics behind wave scattering and their inverse problems, we will be reading through the book “Partial Differential Equations 2 by Michael E. Taylor” <a class="footnote-reference brackets" href="#id3" id="id1">3</a> , as well as notes  from a course on Linear Partial Differential Equations taught by Dr I Kamotski during term 1, 2019 at UCL.</p>
 <p>We will most notably follow chapter 9, Scattering by Objects, and creating a resource of important and useful theorems and facts in order to build up a base of useful knowledge.</p>
 <p>We will first lay down the fundamental equations relating to scattering.</p>
 <p>Let <span class="math notranslate nohighlight">\(K \subset \mathbb{R}^3\)</span> with a smooth boundary and <span class="math notranslate nohighlight">\(\Omega := K^c\)</span> being a connected complement. Let <span class="math notranslate nohighlight">\(f(x) \in H^s(K)\)</span> be a given function from the Sobolev Space of positive index <span class="math notranslate nohighlight">\(s\)</span> and let <span class="math notranslate nohighlight">\(k&gt;0\)</span>, we wish to solve the following:</p>
@@ -228,15 +228,20 @@
 \[v(x)=\int_{\partial K} \left[f(y)\frac{\partial g}{\partial v_y}(x,t,k) - g(x,y,k)\frac{\partial v}{\partial v}(y)\right]dS(y)\tag{4}\]</div>
 <p>For <span class="math notranslate nohighlight">\(x \in \Omega\)</span> and <span class="math notranslate nohighlight">\(g(x,y,k)\)</span> being the Green Function.</p>
 <p><strong>Fact 1:</strong> Given <span class="math notranslate nohighlight">\(k&gt;0\)</span>, if <span class="math notranslate nohighlight">\(v\)</span> satisfies <span class="math notranslate nohighlight">\((1)-(3)\)</span> with <span class="math notranslate nohighlight">\(f=0\)</span>, then <span class="math notranslate nohighlight">\(v=0\)</span></p>
-<p><strong>Fact 2:</strong> If <span class="math notranslate nohighlight">\(v\)</span> satisfies <span class="math notranslate nohighlight">\((\Delta - k^2)v=0\)</span> for <span class="math notranslate nohighlight">\(|x|\geq  R_0\)</span> and</p>
+<p><strong>Fact 2:</strong> If <span class="math notranslate nohighlight">\(v\)</span> satisfies <span class="math notranslate nohighlight">\((\Delta - k^2)v=0\)</span> for <span class="math notranslate nohighlight">\(|x|\geq  R_0\)</span> and $<span class="math notranslate nohighlight">\(v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty\)</span><span class="math notranslate nohighlight">\( holds, then for \)</span>v(x)=0<span class="math notranslate nohighlight">\( for \)</span>|x|\geq R_0<span class="math notranslate nohighlight">\(. With \)</span>S_R<span class="math notranslate nohighlight">\( being the sphere of radius \)</span>R$.</p>
+<p><strong>Theorem 3:</strong> For <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span>, if we perturbate equation <span class="math notranslate nohighlight">\((1)\)</span> by <span class="math notranslate nohighlight">\(k \to k + i\epsilon\)</span>, with <span class="math notranslate nohighlight">\(v_{\epsilon}\)</span> being the unique solution to the perturbated equation and <span class="math notranslate nohighlight">\(f_{\epsilon}\)</span> being the boundary condition of the perturbated equation.
+If <span class="math notranslate nohighlight">\(s \geq \frac{3}{2}\)</span>, and suppose that as <span class="math notranslate nohighlight">\(\epsilon \to 0\)</span></p>
 <div class="math notranslate nohighlight">
-\[v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty\]</div>
-<p>holds, then for <span class="math notranslate nohighlight">\(v(x)=0\)</span> for <span class="math notranslate nohighlight">\(|x|\geq R_0\)</span>. With <span class="math notranslate nohighlight">\(S_R\)</span> being the sphere of radius <span class="math notranslate nohighlight">\(R\)</span>.</p>
-<p>=======================</p>
+\[f_{\epsilon}\to f\text{,\quad in } H^s(\partial K)\]</div>
+<p>Then we have the unique limit</p>
+<p>$<span class="math notranslate nohighlight">\(v_{\epsilon}\to v\)</span>$<a class="footnote-reference brackets" href="#id4" id="id2">4</a></p>
 <hr class="docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">3</a></span></dt>
 <dd><p>Taylor, M. (2011) Partial Differential Equations II, 2nd ed. New York: Springer</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">4</a></span></dt>
+<dd><p>Is this limit contained in the Sobolev Space, <span class="math notranslate nohighlight">\(H^s(\partial K)\)</span>?</p>
 </dd>
 </dl>
 </div>
