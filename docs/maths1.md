@@ -28,8 +28,10 @@ with out loss of generality, we can set $c_0(x)$ to be constant, for convenience
 
 $$L:=L_0-\eta(x)$$
 
-The sources can be seen to be incident anywhere on the boundary of $\Omega$ and denoted as $s$ and be parameterised by $s \in [0,2\pi)$.  Furthermore, we can represent each source wave as an incoming plane wave
+The sources can be seen to be incident anywhere on the boundary of $\Omega$ and denoted as $s$ and be parameterised by $s\in[0,2\pi)$.  Furthermore, we can represent each source wave as an incoming plane wave
+
 $$e^{i\omega\hat{s}x}$$
+
 with $\hat{s} = (\cos(x), \sin(x))$ or $\hat{s} \in \mathbb{S}^1$ being the direction of incidence. We denote the scattered wave by $u^s(x)$ which satisfies the following equation.
 
 $$\left(L_0 - \eta(x)\right) \left(e^{i\omega\hat{s}x} + u^s(x)\right) = 0 \tag{1}$$ 
