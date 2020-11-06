@@ -3,7 +3,7 @@ Key Facts and Theorems
 
 To get a good foundation in the mathematics behind wave scattering and their inverse problems, we will be reading through the book "Partial Differential Equations 2 by Michael E. Taylor" [^1] , as well as notes  from a course on Linear Partial Differential Equations taught by Dr I Kamotski during term 1, 2019 at UCL.
 
- We will most notably follow chapter 9, Scattering by Objects, and creating a resource of important and useful theorems and facts in order to build up a base of useful knowledge.
+We will most notably follow chapter 9, Scattering by Objects, and creating a resource of important and useful theorems and facts in order to build up a base of useful knowledge.
 
 We will first lay down the fundamental equations relating to scattering.
 
@@ -25,7 +25,11 @@ For $x \in \Omega$ and $g(x,y,k)$ being the Green Function.
 
 **Fact 1:** Given $k>0$, if $v$ satisfies $(1)-(3)$ with $f=0$, then $v=0$
 
-**Fact 2:** If $v$ satisfies $(\Delta - k^2)v=0$ for $|x|\geq  R_0$ and $$v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty$$ holds, then for $v(x)=0$ for $|x|\geq R_0$. With $S_R$ being the sphere of radius $R$.
+**Fact 2:** If $v$ satisfies $(\Delta - k^2)v=0$ for $|x|\geq  R_0$ and 
+
+$$v(x)=\int_{S_R} |v|^2dS \to 0 \text{, as } R \to \infty$$
+
+holds, then for $v(x)=0$ for $|x|\geq R_0$. With $S_R$ being the sphere of radius $R$.
 
 
 =======================

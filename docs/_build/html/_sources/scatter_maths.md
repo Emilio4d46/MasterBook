@@ -4,8 +4,6 @@ Derivation of Foundational Equations
 
 In order to fully illuminate the methodology and structure behind the model that Yuwei Fan et al. decided to use we must first understand the underlying mathematics behind the scenario they wished to model. I will be following their derivation here and expanding upon it where I find components of their derivation confusing.
 
-  
-
 **Definitions and Assumptions**
 
 Let us define $\Omega$ as a compact domain of interest. We can define the inhomogeneous media scattering problem with a fixed frequency wave, $\omega$, to be modelled by the Helmholtz equation
@@ -30,7 +28,7 @@ $$L:=L_0-\eta(x)$$
 
 The sources can be seen to be incident anywhere on the boundary of $\Omega$ and denoted as $s$ and be parameterised by $s\in[0,2\pi)$.  Furthermore, we can represent each source wave as an incoming plane wave
 
-$$e^{i\omega\hat{s} \cdot x} $$
+$$e^{i\omega\hat{s} \cdot x}$$
 
 with $\hat{s} = (\cos(x), \sin(x))$ or $\hat{s} \in \mathbb{S}^1$ being the direction of incidence. We denote the scattered wave by $u^s(x)$ which satisfies the following equation.
 
@@ -52,11 +50,15 @@ We can then denote $d(s,r)$ to be the set of all far field patterns from a sourc
 
 In order to solve either the forward map or inverse problem we must better understand the relationship between $\eta(x)$ and $d(s,r)$. We can do this by doing a perturbative analysis for a small $\eta(x)$. We can do this by expanding (1)
 
- $$\left(L_0 - \eta(x)\right) \left(e^{i\omega\hat{s}x} + u^s(x)\right) = 0$$
- $$\Leftrightarrow \left(L_0 - \eta(x)\right) u^s(x) = \left(L_0 - \eta(x)\right)e^{i\omega\hat{s}x}$$
- $$\Leftrightarrow L_0 \cdot u^s(x)-\eta(x)\cdot u^s(x) = L_o \cdot e^{i\omega\hat{s}x}-\eta(x)\cdot e^{i\omega\hat{s}x}$$
- As $u^s(x)$ is dependent on $\eta(x)$ and we are looking only at small perturbations from $\eta(x) = 0$ we can combine them into higher order $\eta(x)$ terms
-  $$L_0 \cdot u^s(x)+o(\eta)= L_o \cdot e^{i\omega\hat{s}x}-\eta(x)\cdot e^{i\omega\hat{s}x}$$
+$$\left(L_0 - \eta(x)\right) \left(e^{i\omega\hat{s}x} + u^s(x)\right) = 0$$
+
+$$\Leftrightarrow \left(L_0 - \eta(x)\right) u^s(x) = \left(L_0 - \eta(x)\right)e^{i\omega\hat{s}x}$$
+
+$$\Leftrightarrow L_0 \cdot u^s(x)-\eta(x)\cdot u^s(x) = L_o \cdot e^{i\omega\hat{s}x}-\eta(x)\cdot e^{i\omega\hat{s}x}$$
+
+As $u^s(x)$ is dependent on $\eta(x)$ and we are looking only at small perturbations from $\eta(x) = 0$ we can combine them into higher order $\eta(x)$ terms
+
+$$L_0 \cdot u^s(x)+o(\eta)= L_o \cdot e^{i\omega\hat{s}x}-\eta(x)\cdot e^{i\omega\hat{s}x}$$
   
 And we know that $L_0 \cdot e^{i\omega\hat{s}x} = 0$, so we arrive at
 
