@@ -30,11 +30,12 @@ For $x \in \Omega$ and $g(x,y,k)$ being the Green Function.
 **Theorem 3:** For $\epsilon > 0$, if we perturbate equation $(1)$ by $k \to k + i\epsilon$, with $v_{\epsilon}$ being the unique solution to the perturbated equation and $f_{\epsilon}$ being the boundary condition of the perturbated equation.
 If $s \geq \frac{3}{2}$, and suppose that as $\epsilon \to 0$
 
-$$f_{\epsilon}\to f\text{,\quad in } H^s(\partial K)$$
+$$f_{\epsilon}\to f\text{,     in } H^s(\partial K)$$
 
-Then we have the unique limit
+Then we have the unique limit[^2]
 
-$$v_{\epsilon}\to v$$[^2]
+$$v_{\epsilon}\to v$$
+
 
 
 
