@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>&lt;no title&gt; &#8212; Solving Wave Scattering using Machine Learning</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Key Facts and Theorems" href="taylor_facts.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Solving Wave Scattering using Machine Learning</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Understanding the Paper
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scatter_maths.html">
+   Derivation of Foundational Equations
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Mathematical Supplementals
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="taylor_facts.html">
+   Key Facts and Theorems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/PML.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2FPML.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="simple nav section-nav flex-column">
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p>Perfectly Matched Layers</p>
+<p>=======================</p>
+<p>Before we can start to build and train our model, we first need to get training data that we will train out model with. We can do this either by experimentation or by modelling the forward pass of the wave interacting with the scattering field. The former is likely out of the scope of the budget for this masters project and, most likely, far more difficult. Modelling the forward pass, however, will not only be free but also provide us a greater appreciation and understanding of computational modelling and the problem at hand.</p>
+<p>One of the largest issues we will face will be modelling the far field behaviours of the waves as, since we cannot model an infinite area for the waves to move through, we will have to have some form of hard boundary which will cause reflection and interreference with the scattering that we would wish to observe. Typical solutions to problems of this ilk are usually along the lines of either remapping an infinite domain to a finite one, typically via <span class="math notranslate nohighlight">\(\tanh\)</span> or by creating a large enough modelling space in which the waves will decay naturally by the boundary. However both of these solutions pose issues when it comes to oscillating waves as remapping them will cause them to oscillate infinitely at the far field and as they only decay with respect to <span class="math notranslate nohighlight">\(\frac{1}{r}\)</span> they decay too slowly to model in a reasonable domain. Thankfully, there is a solution proposed in “A perfectly matched layer for the absorption of electromagnetic waves” by Jean-Pierre Berenger in 1994 <a class="footnote-reference brackets" href="#id4" id="id1">4</a> dubbed the ‘Perfectly Matched Layer’ (PML). He proposes a method to model waves going off to <span class="math notranslate nohighlight">\(\infty\)</span> independent of test set up. This method proposes applying a totally absorbing boundary layer at the boundary of the modelling domain and the waves in this layer exponentially decay; an issue being that there is almost always some reflection when we change media. However, we may analytically extending the wave equation into the complex plane via a form of coordinate stretching.</p>
+<p><strong>Plan for derivation</strong></p>
+<ol class="simple">
+<li><p>Analytically continue solution to the wave equation into <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>.</p></li>
+<li><p>Coordinate Transfer this extended solution back into <span class="math notranslate nohighlight">\(\mathbb{R}^d\)</span>.</p></li>
+</ol>
+<p>We first start with a prototypical wave.</p>
+<div class="math notranslate nohighlight">
+\[\nabla\left(a\nabla\cdot u \right) = \frac{1}{b}\left(\frac{\partial^2u}{\partial t^2}\right) = \frac{\ddot{u}}{b} \tag{1}\]</div>
+<p>With <span class="math notranslate nohighlight">\(u(\)</span><strong>x</strong><span class="math notranslate nohighlight">\(,t)\)</span> being a wave of scalar amplitude, <span class="math notranslate nohighlight">\(c = \sqrt{ab}\)</span> is the phase velocity for some <span class="math notranslate nohighlight">\(a(\)</span><strong>x</strong><span class="math notranslate nohighlight">\()\)</span> and <span class="math notranslate nohighlight">\(b(\)</span><strong>x</strong><span class="math notranslate nohighlight">\()\)</span> being properties of the medium.</p>
+<p>We can then split this into a pair of coupled first order equations via an auxiliary field, <span class="math notranslate nohighlight">\(v(\)</span><strong>x</strong>,<span class="math notranslate nohighlight">\(t)\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[\dot{u} = b\nabla\cdot  \bold{v}\tag{2} \text{ and }\bold{v} = a\nabla\cdot u\]</div>
+<p>If we have some solution of a wave equation in infinite space, <span class="math notranslate nohighlight">\(w(\bold{x},t)\)</span> and without loss of generality, a region near the origin that we wish to study - in our case this is <span class="math notranslate nohighlight">\(\eta(\bold{x})\)</span>. In order to apply a PML, we first need to analytically extend our solution to <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> within a region near the boundary. We will, for simplicity sake, we will focus on the <span class="math notranslate nohighlight">\(\pm x\)</span> direction but it is identical for any other direction.</p>
+<p>We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves <span class="math notranslate nohighlight">\(u(\bold{x})^s\)</span>, but this is a general proof/verification of the PML]</p>
+<div class="math notranslate nohighlight">
+\[\bold{w}(\bold{x},t) = \sum_{\bold{k},\omega}W_{\bold{k},\omega}e^{i(\bold{k}\cdot  \bold{x} - \omega t)}\tag{3}\]</div>
+<p>For some constant amplitudes <span class="math notranslate nohighlight">\(W_{\bold{k},\omega}\)</span> we can decompose and simplify this further</p>
+<div class="math notranslate nohighlight">
+\[\bold{w}(\bold{x},t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}\]</div>
+<p>With <span class="math notranslate nohighlight">\(\frac{\omega}{k}\)</span> being the phase velocity (which can be different from the group velocity, <span class="math notranslate nohighlight">\(\frac{dω}{dk}\)</span>), which we take to be positive as we are moving in the positive direction (in a homogeneous medium, these <em>in general</em> have the same sign), so we may take <span class="math notranslate nohighlight">\(k\)</span> to be positive.</p>
+<p><strong>Analytical Continuation</strong></p>
+<p>Thankfully, we do not need to construct an analytic continuation into <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> for <span class="math notranslate nohighlight">\((4)\)</span> - our wave equation already has the form of <span class="math notranslate nohighlight">\(e^{ix}\)</span> which is famously analytic! So all we need to do is evaluate this <span class="math notranslate nohighlight">\((6)\)</span> along a complex contour so that we can evaluate along some complex numbers. We can construct a very simple contour, where for some point Re<span class="math notranslate nohighlight">\((x)\)</span>, for example Re<span class="math notranslate nohighlight">\((x) \geq 3\)</span>, we start to add linearly growing complex component - i.e. Im<span class="math notranslate nohighlight">\((x) = it\cdot\)</span>Re<span class="math notranslate nohighlight">\((x)\)</span>, <span class="math notranslate nohighlight">\(t &gt; 0\)</span> for <span class="math notranslate nohighlight">\(x \geq 3\)</span>. from this we can clearly see that when we evaluate <span class="math notranslate nohighlight">\((6)\)</span> along this contour, <span class="math notranslate nohighlight">\((6)\)</span> exponentially decays, so along this contour the wave appears to be passing through an absorbing material. However, the critical thing to notice is that for Re<span class="math notranslate nohighlight">\((x) &lt; 3\)</span> it acts like a reflectionless absorbing material - the PML. Moreover, the analytical solution satisfies the exact same differential equation, now all we need to do is to solve the differential equation along this new complex contour.</p>
+<p><strong>Coordinate Transform back to <span class="math notranslate nohighlight">\(\mathbb{R}\)</span></strong></p>
+<p>We can denote <span class="math notranslate nohighlight">\(\tilde{x}\)</span> as the complex contour and write it as <span class="math notranslate nohighlight">\(\tilde{x} = x + if(x)\)</span> with <span class="math notranslate nohighlight">\(f(x)\)</span> being some linear function - this is how we have deformed the contour and hence how fast the wave will decay. Since <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\tilde{x}\)</span> is a real function of <span class="math notranslate nohighlight">\(x\)</span> and so all we need to do in order to transform our coordinates back into real values of <span class="math notranslate nohighlight">\(x\)</span> is to do a change of variables. We can do this both quickly and easily by applying the following change of variables:</p>
+<div class="math notranslate nohighlight">
+\[d\tilde{x} \mapsto \left(1+f'(x)\right)dx\]</div>
+<p>This is all that is required as we have assumed homogeneity for far field <span class="math notranslate nohighlight">\(x\)</span>. for future convenience we denote <span class="math notranslate nohighlight">\(f'(x) = \frac{\sigma_x(x)}{\omega}\)</span> - with <span class="math notranslate nohighlight">\(\sigma_x(x)\)</span> being some, not necessary continuous, function which describes the contour deformation. This is done to make our attenuation rate not depend on the frequency of the wave. With this notation we can define the PML as a single transformation of our original equation:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial}{\partial x} \mapsto \frac{1}{1 + i\frac{\sigma_x(x)}{w}}\frac{\partial}{\partial x}\tag{5}\]</div>
+<p>Here, we can see that for the regions where <span class="math notranslate nohighlight">\(\sigma_x(x) &gt; 0\)</span> that our solutions of the form (4) will decay exponentially by the contour deformation. While for <span class="math notranslate nohighlight">\(\sigma_x(x) = 0\)</span> we get that <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x}  = \frac{\partial}{\partial x}\)</span>. Thanks to this, we do not get any reflections at the boundary of the PML as it is just an analytic continuation of the function into the complex plane, from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(\tilde{x}\)</span>, and so when <span class="math notranslate nohighlight">\(x = \tilde{x}\)</span>, our original solution remains the same.</p>
+<p>Once we have applied <span class="math notranslate nohighlight">\((5)\)</span> we may then truncate the computational region at some sufficiently large <span class="math notranslate nohighlight">\(x\)</span> outside of our domain of interest - such as with a hard wall or a Dirichlet boundary. This is as, thanks to the PML, if a wave is reflected by the boundary it will be attenuated by the PML <a class="footnote-reference brackets" href="#id5" id="id2">5</a> a second time before being allowed into the region of interest - so it will have a negligible amplitude.</p>
+<p><strong>Other Directions</strong></p>
+<p>The final direction we wish to check is <span class="math notranslate nohighlight">\(-x\)</span> as all other directions are similar to the derivation to the <span class="math notranslate nohighlight">\(x\)</span> direction. This is also fairly simple however, apply <span class="math notranslate nohighlight">\((5)\)</span> but with <span class="math notranslate nohighlight">\(\sigma_x(x) &gt; 0\)</span> for sufficiently negative <span class="math notranslate nohighlight">\(x\)</span> as well. This still works as, for <span class="math notranslate nohighlight">\(-x\)</span>, we have <span class="math notranslate nohighlight">\(k&lt;0\)</span>  and so within our PML region our wave solution still attenuates. Using similar conditions we can now generalise to <span class="math notranslate nohighlight">\(\pm y, \pm z\)</span>.</p>
+<p>As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of <span class="math notranslate nohighlight">\((5)\)</span>. This was done to make out attenuation frequency independent, however expressing <span class="math notranslate nohighlight">\(\frac{1}{\omega}\)</span> in the time domain may cause some challenges as we don’t have <span class="math notranslate nohighlight">\(\omega\)</span> separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed<span class="math notranslate nohighlight">\(\omega\)</span> - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson<a class="footnote-reference brackets" href="#id6" id="id3">6</a>, the foundation of my understanding of the PML derivation.</p>
+<hr class="docutils" />
+<hr class="docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">4</a></span></dt>
+<dd><p>https://www.sciencedirect.com/science/article/pii/S0021999184711594</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">5</a></span></dt>
+<dd><p>We may also make the PML of arbitrary size as long as we, correspondingly, make sufficient changes to <span class="math notranslate nohighlight">\(\sigma_x(x)\)</span>. In general, we make <span class="math notranslate nohighlight">\(\sigma_x(x)\)</span> <span class="math notranslate nohighlight">\(O(x^2)\)</span> or <span class="math notranslate nohighlight">\(O(x^3)\)</span> and the PML about <span class="math notranslate nohighlight">\(\frac{\lambda}{2}\)</span> thick.</p>
+</dd>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">6</a></span></dt>
+<dd><p>http://math.mit.edu/~stevenj/18.369/pml.pdf</p>
+</dd>
+</dl>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="taylor_facts.html" title="previous page">Key Facts and Theorems</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Emilio McAllister Fognini<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
