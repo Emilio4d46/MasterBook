@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;no title&gt; &#8212; Solving Wave Scattering using Machine Learning</title>
+    <title>Perfectly Matched Layers &#8212; Solving Wave Scattering using Machine Learning</title>
     
   <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
 
@@ -114,10 +114,15 @@
   Mathematical Supplementals
  </span>
 </p>
-<ul class="nav sidenav_l1">
+<ul class="current nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="taylor_facts.html">
    Key Facts and Theorems
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Perfectly Matched Layers
   </a>
  </li>
 </ul>
@@ -203,15 +208,6 @@
     <!-- Table of contents -->
     <div class="d-none d-md-block col-md-2 bd-toc show">
         
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="simple nav section-nav flex-column">
-</ul>
-
-        </nav>
-        
     </div>
 </div>
     <div id="main-content" class="row">
@@ -219,8 +215,8 @@
         
               <div>
                 
-  <p>Perfectly Matched Layers</p>
-<p>=======================</p>
+  <div class="section" id="perfectly-matched-layers">
+<h1>Perfectly Matched Layers<a class="headerlink" href="#perfectly-matched-layers" title="Permalink to this headline">¶</a></h1>
 <p>Before we can start to build and train our model, we first need to get training data that we will train out model with. We can do this either by experimentation or by modelling the forward pass of the wave interacting with the scattering field. The former is likely out of the scope of the budget for this masters project and, most likely, far more difficult. Modelling the forward pass, however, will not only be free but also provide us a greater appreciation and understanding of computational modelling and the problem at hand.</p>
 <p>One of the largest issues we will face will be modelling the far field behaviours of the waves as, since we cannot model an infinite area for the waves to move through, we will have to have some form of hard boundary which will cause reflection and interreference with the scattering that we would wish to observe. Typical solutions to problems of this ilk are usually along the lines of either remapping an infinite domain to a finite one, typically via <span class="math notranslate nohighlight">\(\tanh\)</span> or by creating a large enough modelling space in which the waves will decay naturally by the boundary. However both of these solutions pose issues when it comes to oscillating waves as remapping them will cause them to oscillate infinitely at the far field and as they only decay with respect to <span class="math notranslate nohighlight">\(\frac{1}{r}\)</span> they decay too slowly to model in a reasonable domain. Thankfully, there is a solution proposed in “A perfectly matched layer for the absorption of electromagnetic waves” by Jean-Pierre Berenger in 1994 <a class="footnote-reference brackets" href="#id4" id="id1">4</a> dubbed the ‘Perfectly Matched Layer’ (PML). He proposes a method to model waves going off to <span class="math notranslate nohighlight">\(\infty\)</span> independent of test set up. This method proposes applying a totally absorbing boundary layer at the boundary of the modelling domain and the waves in this layer exponentially decay; an issue being that there is almost always some reflection when we change media. However, we may analytically extending the wave equation into the complex plane via a form of coordinate stretching.</p>
 <p><strong>Plan for derivation</strong></p>
@@ -270,6 +266,7 @@
 <dd><p>http://math.mit.edu/~stevenj/18.369/pml.pdf</p>
 </dd>
 </dl>
+</div>
 
     <script type="text/x-thebe-config">
     {
