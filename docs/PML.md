@@ -36,27 +36,27 @@ We can then split this into a pair of coupled first order equations via an auxil
 
   
 
-$$\dot{u} = b\nabla\cdot  \bold{v}\tag{2} \text{ and }\bold{v} = a\nabla\cdot u$$
+$$\dot{u} = b\nabla\cdot  v\tag{2} \text{ and }v = a\nabla\cdot u$$
 
   
 
-If we have some solution of a wave equation in infinite space, $w(\bold{x},t)$ and without loss of generality, a region near the origin that we wish to study - in our case this is $\eta(\bold{x})$. In order to apply a PML, we first need to analytically extend our solution to $\mathbb{C}$ within a region near the boundary. We will, for simplicity sake, we will focus on the $\pm x$ direction but it is identical for any other direction.
+If we have some solution of a wave equation in infinite space, $w(x,t)$ and without loss of generality, a region near the origin that we wish to study - in our case this is $\eta(x)$. In order to apply a PML, we first need to analytically extend our solution to $\mathbb{C}$ within a region near the boundary. We will, for simplicity sake, we will focus on the $\pm x$ direction but it is identical for any other direction.
 
   
 
-We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves $u(\bold{x})^s$, but this is a general proof/verification of the PML]
+We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves $u(x)^s$, but this is a general proof/verification of the PML]
 
   
 
-$$\bold{w}(\bold{x},t) = \sum_{\bold{k},\omega}W_{\bold{k},\omega}e^{i(\bold{k}\cdot  \bold{x} - \omega t)}\tag{3}$$
+$$w(x,t) = \sum_{k,\omega}W_{k,\omega}e^{i(k\cdot  x - \omega t)}\tag{3}$$
 
   
 
-For some constant amplitudes $W_{\bold{k},\omega}$ we can decompose and simplify this further
+For some constant amplitudes $W_{k,\omega}$ we can decompose and simplify this further
 
   
 
-$$\bold{w}(\bold{x},t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}$$
+$$w(x,t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}$$
 
   
 
