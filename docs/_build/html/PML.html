@@ -230,14 +230,14 @@
 <p>With <span class="math notranslate nohighlight">\(u(\)</span><strong>x</strong><span class="math notranslate nohighlight">\(,t)\)</span> being a wave of scalar amplitude, <span class="math notranslate nohighlight">\(c = \sqrt{ab}\)</span> is the phase velocity for some <span class="math notranslate nohighlight">\(a(\)</span><strong>x</strong><span class="math notranslate nohighlight">\()\)</span> and <span class="math notranslate nohighlight">\(b(\)</span><strong>x</strong><span class="math notranslate nohighlight">\()\)</span> being properties of the medium.</p>
 <p>We can then split this into a pair of coupled first order equations via an auxiliary field, <span class="math notranslate nohighlight">\(v(\)</span><strong>x</strong>,<span class="math notranslate nohighlight">\(t)\)</span> with</p>
 <div class="math notranslate nohighlight">
-\[\dot{u} = b\nabla\cdot  \bold{v}\tag{2} \text{ and }\bold{v} = a\nabla\cdot u\]</div>
-<p>If we have some solution of a wave equation in infinite space, <span class="math notranslate nohighlight">\(w(\bold{x},t)\)</span> and without loss of generality, a region near the origin that we wish to study - in our case this is <span class="math notranslate nohighlight">\(\eta(\bold{x})\)</span>. In order to apply a PML, we first need to analytically extend our solution to <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> within a region near the boundary. We will, for simplicity sake, we will focus on the <span class="math notranslate nohighlight">\(\pm x\)</span> direction but it is identical for any other direction.</p>
-<p>We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves <span class="math notranslate nohighlight">\(u(\bold{x})^s\)</span>, but this is a general proof/verification of the PML]</p>
+\[\dot{u} = b\nabla\cdot  v\tag{2} \text{ and }v = a\nabla\cdot u\]</div>
+<p>If we have some solution of a wave equation in infinite space, <span class="math notranslate nohighlight">\(w(x,t)\)</span> and without loss of generality, a region near the origin that we wish to study - in our case this is <span class="math notranslate nohighlight">\(\eta(x)\)</span>. In order to apply a PML, we first need to analytically extend our solution to <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> within a region near the boundary. We will, for simplicity sake, we will focus on the <span class="math notranslate nohighlight">\(\pm x\)</span> direction but it is identical for any other direction.</p>
+<p>We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves <span class="math notranslate nohighlight">\(u(x)^s\)</span>, but this is a general proof/verification of the PML]</p>
 <div class="math notranslate nohighlight">
-\[\bold{w}(\bold{x},t) = \sum_{\bold{k},\omega}W_{\bold{k},\omega}e^{i(\bold{k}\cdot  \bold{x} - \omega t)}\tag{3}\]</div>
-<p>For some constant amplitudes <span class="math notranslate nohighlight">\(W_{\bold{k},\omega}\)</span> we can decompose and simplify this further</p>
+\[w(x,t) = \sum_{k,\omega}W_{k,\omega}e^{i(k\cdot  x - \omega t)}\tag{3}\]</div>
+<p>For some constant amplitudes <span class="math notranslate nohighlight">\(W_{k,\omega}\)</span> we can decompose and simplify this further</p>
 <div class="math notranslate nohighlight">
-\[\bold{w}(\bold{x},t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}\]</div>
+\[w(x,t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}\]</div>
 <p>With <span class="math notranslate nohighlight">\(\frac{\omega}{k}\)</span> being the phase velocity (which can be different from the group velocity, <span class="math notranslate nohighlight">\(\frac{dω}{dk}\)</span>), which we take to be positive as we are moving in the positive direction (in a homogeneous medium, these <em>in general</em> have the same sign), so we may take <span class="math notranslate nohighlight">\(k\)</span> to be positive.</p>
 <p><strong>Analytical Continuation</strong></p>
 <p>Thankfully, we do not need to construct an analytic continuation into <span class="math notranslate nohighlight">\(\mathbb{C}\)</span> for <span class="math notranslate nohighlight">\((4)\)</span> - our wave equation already has the form of <span class="math notranslate nohighlight">\(e^{ix}\)</span> which is famously analytic! So all we need to do is evaluate this <span class="math notranslate nohighlight">\((6)\)</span> along a complex contour so that we can evaluate along some complex numbers. We can construct a very simple contour, where for some point Re<span class="math notranslate nohighlight">\((x)\)</span>, for example Re<span class="math notranslate nohighlight">\((x) \geq 3\)</span>, we start to add linearly growing complex component - i.e. Im<span class="math notranslate nohighlight">\((x) = it\cdot\)</span>Re<span class="math notranslate nohighlight">\((x)\)</span>, <span class="math notranslate nohighlight">\(t &gt; 0\)</span> for <span class="math notranslate nohighlight">\(x \geq 3\)</span>. from this we can clearly see that when we evaluate <span class="math notranslate nohighlight">\((6)\)</span> along this contour, <span class="math notranslate nohighlight">\((6)\)</span> exponentially decays, so along this contour the wave appears to be passing through an absorbing material. However, the critical thing to notice is that for Re<span class="math notranslate nohighlight">\((x) &lt; 3\)</span> it acts like a reflectionless absorbing material - the PML. Moreover, the analytical solution satisfies the exact same differential equation, now all we need to do is to solve the differential equation along this new complex contour.</p>
@@ -253,6 +253,38 @@
 <p><strong>Other Directions</strong></p>
 <p>The final direction we wish to check is <span class="math notranslate nohighlight">\(-x\)</span> as all other directions are similar to the derivation to the <span class="math notranslate nohighlight">\(x\)</span> direction. This is also fairly simple however, apply <span class="math notranslate nohighlight">\((5)\)</span> but with <span class="math notranslate nohighlight">\(\sigma_x(x) &gt; 0\)</span> for sufficiently negative <span class="math notranslate nohighlight">\(x\)</span> as well. This still works as, for <span class="math notranslate nohighlight">\(-x\)</span>, we have <span class="math notranslate nohighlight">\(k&lt;0\)</span>  and so within our PML region our wave solution still attenuates. Using similar conditions we can now generalise to <span class="math notranslate nohighlight">\(\pm y, \pm z\)</span>.</p>
 <p>As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of <span class="math notranslate nohighlight">\((5)\)</span>. This was done to make out attenuation frequency independent, however expressing <span class="math notranslate nohighlight">\(\frac{1}{\omega}\)</span> in the time domain may cause some challenges as we don’t have <span class="math notranslate nohighlight">\(\omega\)</span> separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed<span class="math notranslate nohighlight">\(\omega\)</span> - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson<a class="footnote-reference brackets" href="#id6" id="id3">6</a>, the foundation of my understanding of the PML derivation.</p>
+<p>Now we wish to apply this idea of a PML to the forward pass that discussed in a previous section, namely the inhomogeneous equation:</p>
+<div class="math notranslate nohighlight">
+\[Lu:= \left(-\Delta - \frac{\omega^2}{c^2(x)}\right)\]</div>
+<p>We define the scatterer, <span class="math notranslate nohighlight">\(\eta(x)\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\eta(x) := \left(\frac{\omega^2}{c^2(x)} - \frac{\omega^2}{c_0^2(x)}\right)\]</div>
+<p>which we can see is compactly supported in <span class="math notranslate nohighlight">\(\Omega\)</span> as <span class="math notranslate nohighlight">\(c^2(x)\)</span> is equal to <span class="math notranslate nohighlight">\(c_0^2(x)\)</span> outside <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p>So we can define the remainder of the operator as such</p>
+<div class="math notranslate nohighlight">
+\[L_0:= -\Delta - \frac{\omega^2}{c_0^2(r)} = -\Delta - \omega^2 \]</div>
+<p>Without loss of generality, we can set <span class="math notranslate nohighlight">\(c_0(r)\)</span> to be constant, for convenience we set <span class="math notranslate nohighlight">\(c_0(r)\equiv1\)</span>. so we finally get</p>
+<div class="math notranslate nohighlight">
+\[Lu:=\left(L_0-\eta(r)\right)u = f\]</div>
+<p>We can re-write this into an eaiser form to apply the PML too</p>
+<div class="math notranslate nohighlight">
+\[-\nabla\cdot\left(\nabla u\right) + - \frac{\omega^2}{c^2(r)}u  - \eta(r)u = f\]</div>
+<p>We can then construct and apply a similar change of variables as the ones seen above</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x' = \begin{cases}  
+x + \frac{ic^2(x)}{\omega}\int_{x_0}^{x}\sigma_{0,x}\left(|x|-x_0\right)^n \, dx &amp;\text{if } |x| \geq x_0 \\  
+x &amp;\text{if } |x| &lt; x_0
+\end{cases}\end{split}\]</div>
+<p>Similarly for <span class="math notranslate nohighlight">\(y\)</span>. We will also simplify the notation by denoting the following:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\xi}(\xi) = \sigma_{0,\xi}\left(|\xi|-\xi_0\right)^n\]</div>
+<p>With <span class="math notranslate nohighlight">\(\xi\)</span> being either <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\sigma_{0,\xi}\)</span> being a constant, and n <span class="math notranslate nohighlight">\(\in \mathbb{Z}\)</span>. This simplifies the definition of the derivative</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial x'}{\partial x} = \begin{cases}  
+1 + \frac{ic^2(x)}{\omega}\sigma_{x}(x) &amp;\text{if } |x| \geq x_0 \\  
+1 &amp;\text{if } |x| &lt; x_0
+\end{cases}\end{split}\]</div>
+<p>And once again similarly for <span class="math notranslate nohighlight">\(y\)</span></p>
 <hr class="docutils" />
 <hr class="docutils" />
 <dl class="footnote brackets">

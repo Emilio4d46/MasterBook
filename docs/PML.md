@@ -90,6 +90,48 @@ The final direction we wish to check is $-x$ as all other directions are similar
 
 As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of $(5)$. This was done to make out attenuation frequency independent, however expressing $\frac{1}{\omega}$ in the time domain may cause some challenges as we don't have $\omega$ separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed$\omega$ - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson[^3], the foundation of my understanding of the PML derivation.
 
+Now we wish to apply this idea of a PML to the forward pass that discussed in a previous section, namely the inhomogeneous equation:
+
+$$Lu:= \left(-\Delta - \frac{\omega^2}{c^2(x)}\right)$$
+
+We define the scatterer, $\eta(x)$ as
+
+$$\eta(x) := \left(\frac{\omega^2}{c^2(x)} - \frac{\omega^2}{c_0^2(x)}\right)$$
+
+which we can see is compactly supported in $\Omega$ as $c^2(x)$ is equal to $c_0^2(x)$ outside $\Omega$.
+
+So we can define the remainder of the operator as such  
+
+$$L_0:= -\Delta - \frac{\omega^2}{c_0^2(r)} = -\Delta - \omega^2 $$
+
+Without loss of generality, we can set $c_0(r)$ to be constant, for convenience we set $c_0(r)\equiv1$. so we finally get  
+
+$$Lu:=\left(L_0-\eta(r)\right)u = f$$ 
+
+We can re-write this into an eaiser form to apply the PML too
+
+$$-\nabla\cdot\left(\nabla u\right) + - \frac{\omega^2}{c^2(r)}u  - \eta(r)u = f$$
+
+We can then construct and apply a similar change of variables as the ones seen above
+
+$$x' = \begin{cases}  
+x + \frac{ic^2(x)}{\omega}\int_{x_0}^{x}\sigma_{0,x}\left(|x|-x_0\right)^n \, dx &\text{if } |x| \geq x_0 \\  
+x &\text{if } |x| < x_0
+\end{cases}$$
+
+Similarly for $y$. We will also simplify the notation by denoting the following:
+
+$$\sigma_{\xi}(\xi) = \sigma_{0,\xi}\left(|\xi|-\xi_0\right)^n$$
+
+With $\xi$ being either $x$ or $y$ and $\sigma_{0,\xi}$ being a constant, and n $\in \mathbb{Z}$. This simplifies the definition of the derivative
+
+$$\frac{\partial x'}{\partial x} = \begin{cases}  
+1 + \frac{ic^2(x)}{\omega}\sigma_{x}(x) &\text{if } |x| \geq x_0 \\  
+1 &\text{if } |x| < x_0
+\end{cases}$$
+
+And once again similarly for $y$
+
 -------
 
 [^1]: https://www.sciencedirect.com/science/article/pii/S0021999184711594

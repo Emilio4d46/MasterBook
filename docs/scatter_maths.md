@@ -38,7 +38,7 @@ As well as the Somerfield radiation boundary condition
 
 $$\lim_{|x|\to\infty}|x|^{\frac{1}{2}}\left(\frac{\partial}{\partial|x|} - ik\right)u(x)=0$$
 
- This is true as TBD.[^1]
+We need this to be true so that our field is continous.
 
 Similar to the sources, we can denote the 'recorded' far field pattern $r$, and let them  be parameterised by $r \in [0,2\pi)$. Once again, we will denote $\hat{r} = (\cos(x), \sin(x))$ or $\hat{r} \in \mathbb{S}^1$ being the direction of emission. With this we can define $\hat{u}^s(x)$ to be the far field pattern recorded in direction $\hat{r}$ as
 
@@ -85,7 +85,7 @@ With $d_1(s,r)$ denoting the first order approximation to $d(s,r)$ with respect 
 
 **Problem Setup**
 
-As we are dealing with the far field pattern problem, we can approximate $\Omega$ as the unit disk centred at the origin and can treat $\hat{s}$ and $\hat{r}$ as uniformly sampled from $\mathbb{S}^1$. We can denote this by setting $s=\frac{2\pi j}{N_s}$ and $r=\frac{2\pi k}{N_r}$ with setting $N_s = N_r$. As we are now assuming that $\Omega$ is the unit disc, it will now be useful to use polar coordinates. We may define $x=\left(\rho\cos(\theta),\rho\sin(\theta)\right)$ with $\rho \in [0,1]$ and $\theta \in [0,2\pi)$. As we also have the direction of the source, $s\in[0,2\pi)$ and the direction of our scattering measurement, $r\in[0,2\pi)$; it is suggested to use a change of variables[^2]
+As we are dealing with the far field pattern problem, we can approximate $\Omega$ as the unit disk centred at the origin and can treat $\hat{s}$ and $\hat{r}$ as uniformly sampled from $\mathbb{S}^1$. We can denote this by setting $s=\frac{2\pi j}{N_s}$ and $r=\frac{2\pi k}{N_r}$ with setting $N_s = N_r$. As we are now assuming that $\Omega$ is the unit disc, it will now be useful to use polar coordinates. We may define $x=\left(\rho\cos(\theta),\rho\sin(\theta)\right)$ with $\rho \in [0,1]$ and $\theta \in [0,2\pi)$. As we also have the direction of the source, $s\in[0,2\pi)$ and the direction of our scattering measurement, $r\in[0,2\pi)$; it is suggested to use a change of variables
 
 $$m=\frac{r+s}{2},h=\frac{r-s}{2}$$
 
@@ -105,14 +105,10 @@ As this is a mapping from a function space to a function space there exists a ke
 
 $$d_1(m,h) = \int_{0}^{1} \int_{0}^{2\pi} K(m,h,\rho,\theta)\cdot \eta(\rho,\theta)\,\, d\theta \, d\rho$$
 
-As the external velocity field is constant, $c_0=1$, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to $m$ and $h$.[^3]
+As the external velocity field is constant, $c_0=1$, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to $m$ and $h$.[^1]
 This allows us to simplify the system significantly.
 
 =======================
 
-[^1]: This is related to the boundary conditions and the fact that the interior and exterior solution should be continuous at the boundary when we expand. However, I am still unsure as to how this relates to the expression (1). I am still making my way through Taylor but if there is a more elegant explanation or resource please do link it to me.
-
-[^2]: Why do we change our variables in this manner? What is the reason for not just using $s$ and $r$ as they are defined above?
-
-[^3]: I understand that the system is fully symmetric with respect to $s$ as there is not preference to the incidence wave. But surely due to the internal structure of $\Omega$ would vary with respect to $r$. Or in a more to phrase it more mathematically, the variation of $\eta(\rho,\theta)$ within $\Omega$ would change $\hat{u}^s(\rho,\theta)$ so that at a given point $r$, we would measure a different wave?
+[^1]: I understand that the system is fully symmetric with respect to $s$ as there is not preference to the incidence wave. But surely due to the internal structure of $\Omega$ would vary with respect to $r$. Or in a more to phrase it more mathematically, the variation of $\eta(\rho,\theta)$ within $\Omega$ would change $\hat{u}^s(\rho,\theta)$ so that at a given point $r$, we would measure a different wave?
 

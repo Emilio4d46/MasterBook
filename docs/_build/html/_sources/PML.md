@@ -36,27 +36,27 @@ We can then split this into a pair of coupled first order equations via an auxil
 
   
 
-$$\dot{u} = b\nabla\cdot  \bold{v}\tag{2} \text{ and }\bold{v} = a\nabla\cdot u$$
+$$\dot{u} = b\nabla\cdot  v\tag{2} \text{ and }v = a\nabla\cdot u$$
 
   
 
-If we have some solution of a wave equation in infinite space, $w(\bold{x},t)$ and without loss of generality, a region near the origin that we wish to study - in our case this is $\eta(\bold{x})$. In order to apply a PML, we first need to analytically extend our solution to $\mathbb{C}$ within a region near the boundary. We will, for simplicity sake, we will focus on the $\pm x$ direction but it is identical for any other direction.
+If we have some solution of a wave equation in infinite space, $w(x,t)$ and without loss of generality, a region near the origin that we wish to study - in our case this is $\eta(x)$. In order to apply a PML, we first need to analytically extend our solution to $\mathbb{C}$ within a region near the boundary. We will, for simplicity sake, we will focus on the $\pm x$ direction but it is identical for any other direction.
 
   
 
-We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves $u(\bold{x})^s$, but this is a general proof/verification of the PML]
+We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves $u(x)^s$, but this is a general proof/verification of the PML]
 
   
 
-$$\bold{w}(\bold{x},t) = \sum_{\bold{k},\omega}W_{\bold{k},\omega}e^{i(\bold{k}\cdot  \bold{x} - \omega t)}\tag{3}$$
+$$w(x,t) = \sum_{k,\omega}W_{k,\omega}e^{i(k\cdot  x - \omega t)}\tag{3}$$
 
   
 
-For some constant amplitudes $W_{\bold{k},\omega}$ we can decompose and simplify this further
+For some constant amplitudes $W_{k,\omega}$ we can decompose and simplify this further
 
   
 
-$$\bold{w}(\bold{x},t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}$$
+$$w(x,t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}$$
 
   
 
@@ -89,6 +89,48 @@ Once we have applied $(5)$ we may then truncate the computational region at some
 The final direction we wish to check is $-x$ as all other directions are similar to the derivation to the $x$ direction. This is also fairly simple however, apply $(5)$ but with $\sigma_x(x) > 0$ for sufficiently negative $x$ as well. This still works as, for $-x$, we have $k<0$  and so within our PML region our wave solution still attenuates. Using similar conditions we can now generalise to $\pm y, \pm z$.
 
 As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of $(5)$. This was done to make out attenuation frequency independent, however expressing $\frac{1}{\omega}$ in the time domain may cause some challenges as we don't have $\omega$ separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed$\omega$ - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson[^3], the foundation of my understanding of the PML derivation.
+
+Now we wish to apply this idea of a PML to the forward pass that discussed in a previous section, namely the inhomogeneous equation:
+
+$$Lu:= \left(-\Delta - \frac{\omega^2}{c^2(x)}\right)$$
+
+We define the scatterer, $\eta(x)$ as
+
+$$\eta(x) := \left(\frac{\omega^2}{c^2(x)} - \frac{\omega^2}{c_0^2(x)}\right)$$
+
+which we can see is compactly supported in $\Omega$ as $c^2(x)$ is equal to $c_0^2(x)$ outside $\Omega$.
+
+So we can define the remainder of the operator as such  
+
+$$L_0:= -\Delta - \frac{\omega^2}{c_0^2(r)} = -\Delta - \omega^2 $$
+
+Without loss of generality, we can set $c_0(r)$ to be constant, for convenience we set $c_0(r)\equiv1$. so we finally get  
+
+$$Lu:=\left(L_0-\eta(r)\right)u = f$$ 
+
+We can re-write this into an eaiser form to apply the PML too
+
+$$-\nabla\cdot\left(\nabla u\right) + - \frac{\omega^2}{c^2(r)}u  - \eta(r)u = f$$
+
+We can then construct and apply a similar change of variables as the ones seen above
+
+$$x' = \begin{cases}  
+x + \frac{ic^2(x)}{\omega}\int_{x_0}^{x}\sigma_{0,x}\left(|x|-x_0\right)^n \, dx &\text{if } |x| \geq x_0 \\  
+x &\text{if } |x| < x_0
+\end{cases}$$
+
+Similarly for $y$. We will also simplify the notation by denoting the following:
+
+$$\sigma_{\xi}(\xi) = \sigma_{0,\xi}\left(|\xi|-\xi_0\right)^n$$
+
+With $\xi$ being either $x$ or $y$ and $\sigma_{0,\xi}$ being a constant, and n $\in \mathbb{Z}$. This simplifies the definition of the derivative
+
+$$\frac{\partial x'}{\partial x} = \begin{cases}  
+1 + \frac{ic^2(x)}{\omega}\sigma_{x}(x) &\text{if } |x| \geq x_0 \\  
+1 &\text{if } |x| < x_0
+\end{cases}$$
+
+And once again similarly for $y$
 
 -------
 
