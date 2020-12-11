@@ -248,6 +248,38 @@
 <p><strong>Other Directions</strong></p>
 <p>The final direction we wish to check is <span class="math notranslate nohighlight">\(-x\)</span> as all other directions are similar to the derivation to the <span class="math notranslate nohighlight">\(x\)</span> direction. This is also fairly simple however, apply <span class="math notranslate nohighlight">\((5)\)</span> but with <span class="math notranslate nohighlight">\(\sigma_x(x) &gt; 0\)</span> for sufficiently negative <span class="math notranslate nohighlight">\(x\)</span> as well. This still works as, for <span class="math notranslate nohighlight">\(-x\)</span>, we have <span class="math notranslate nohighlight">\(k&lt;0\)</span>  and so within our PML region our wave solution still attenuates. Using similar conditions we can now generalise to <span class="math notranslate nohighlight">\(\pm y, \pm z\)</span>.</p>
 <p>As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of <span class="math notranslate nohighlight">\((5)\)</span>. This was done to make out attenuation frequency independent, however expressing <span class="math notranslate nohighlight">\(\frac{1}{\omega}\)</span> in the time domain may cause some challenges as we don’t have <span class="math notranslate nohighlight">\(\omega\)</span> separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed<span class="math notranslate nohighlight">\(\omega\)</span> - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson<a class="footnote-reference brackets" href="#id6" id="id3">6</a>, the foundation of my understanding of the PML derivation.</p>
+<p>Now we wish to apply this idea of a PML to the forward pass that discussed in a previous section, namely the inhomogeneous equation:</p>
+<div class="math notranslate nohighlight">
+\[Lu:= \left(-\Delta - \frac{\omega^2}{c^2(x)}\right)\]</div>
+<p>We define the scatterer, <span class="math notranslate nohighlight">\(\eta(x)\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\eta(x) := \left(\frac{\omega^2}{c^2(x)} - \frac{\omega^2}{c_0^2(x)}\right)\]</div>
+<p>which we can see is compactly supported in <span class="math notranslate nohighlight">\(\Omega\)</span> as <span class="math notranslate nohighlight">\(c^2(x)\)</span> is equal to <span class="math notranslate nohighlight">\(c_0^2(x)\)</span> outside <span class="math notranslate nohighlight">\(\Omega\)</span>.</p>
+<p>So we can define the remainder of the operator as such</p>
+<div class="math notranslate nohighlight">
+\[L_0:= -\Delta - \frac{\omega^2}{c_0^2(r)} = -\Delta - \omega^2 \]</div>
+<p>Without loss of generality, we can set <span class="math notranslate nohighlight">\(c_0(r)\)</span> to be constant, for convenience we set <span class="math notranslate nohighlight">\(c_0(r)\equiv1\)</span>. so we finally get</p>
+<div class="math notranslate nohighlight">
+\[Lu:=\left(L_0-\eta(r)\right)u = f\]</div>
+<p>We can re-write this into an eaiser form to apply the PML too</p>
+<div class="math notranslate nohighlight">
+\[-\nabla\cdot\left(\nabla u\right) + - \frac{\omega^2}{c^2(r)}u  - \eta(r)u = f\]</div>
+<p>We can then construct and apply a similar change of variables as the ones seen above</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}x' = \begin{cases}  
+x + \frac{ic^2(x)}{\omega}\int_{x_0}^{x}\sigma_{0,x}\left(|x|-x_0\right)^n \, dx &amp;\text{if } |x| \geq x_0 \\  
+x &amp;\text{if } |x| &lt; x_0
+\end{cases}\end{split}\]</div>
+<p>Similarly for <span class="math notranslate nohighlight">\(y\)</span>. We will also simplify the notation by denoting the following:</p>
+<div class="math notranslate nohighlight">
+\[\sigma_{\xi}(\xi) = \sigma_{0,\xi}\left(|\xi|-\xi_0\right)^n\]</div>
+<p>With <span class="math notranslate nohighlight">\(\xi\)</span> being either <span class="math notranslate nohighlight">\(x\)</span> or <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(\sigma_{0,\xi}\)</span> being a constant, and n <span class="math notranslate nohighlight">\(\in \mathbb{Z}\)</span>. This simplifies the definition of the derivative</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial x'}{\partial x} = \begin{cases}  
+1 + \frac{ic^2(x)}{\omega}\sigma_{x}(x) &amp;\text{if } |x| \geq x_0 \\  
+1 &amp;\text{if } |x| &lt; x_0
+\end{cases}\end{split}\]</div>
+<p>And once again similarly for <span class="math notranslate nohighlight">\(y\)</span></p>
 <hr class="docutils" />
 <hr class="docutils" />
 <dl class="footnote brackets">

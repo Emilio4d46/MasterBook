@@ -238,7 +238,7 @@
 <p>As well as the Somerfield radiation boundary condition</p>
 <div class="math notranslate nohighlight">
 \[\lim_{|x|\to\infty}|x|^{\frac{1}{2}}\left(\frac{\partial}{\partial|x|} - ik\right)u(x)=0\]</div>
-<p>This is true as TBD.<a class="footnote-reference brackets" href="#id4" id="id1">4</a></p>
+<p>We need this to be true so that our field is continous.</p>
 <p>Similar to the sources, we can denote the ‘recorded’ far field pattern <span class="math notranslate nohighlight">\(r\)</span>, and let them  be parameterised by <span class="math notranslate nohighlight">\(r \in [0,2\pi)\)</span>. Once again, we will denote <span class="math notranslate nohighlight">\(\hat{r} = (\cos(x), \sin(x))\)</span> or <span class="math notranslate nohighlight">\(\hat{r} \in \mathbb{S}^1\)</span> being the direction of emission. With this we can define <span class="math notranslate nohighlight">\(\hat{u}^s(x)\)</span> to be the far field pattern recorded in direction <span class="math notranslate nohighlight">\(\hat{r}\)</span> as</p>
 <div class="math notranslate nohighlight">
 \[\hat{u}^s(x)\equiv\lim_{\rho\to\infty}\sqrt{\rho}e^{-i\omega\rho}u^s(\rho\cdot\hat{r})\]</div>
@@ -272,7 +272,7 @@
 \[=\int e^{-iw(\hat{r}-\hat{s})\cdot x}\eta(x)\, dx = d_1(s,r)\]</div>
 <p>With <span class="math notranslate nohighlight">\(d_1(s,r)\)</span> denoting the first order approximation to <span class="math notranslate nohighlight">\(d(s,r)\)</span> with respect to <span class="math notranslate nohighlight">\(\eta(x)\)</span>.</p>
 <p><strong>Problem Setup</strong></p>
-<p>As we are dealing with the far field pattern problem, we can approximate <span class="math notranslate nohighlight">\(\Omega\)</span> as the unit disk centred at the origin and can treat <span class="math notranslate nohighlight">\(\hat{s}\)</span> and <span class="math notranslate nohighlight">\(\hat{r}\)</span> as uniformly sampled from <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span>. We can denote this by setting <span class="math notranslate nohighlight">\(s=\frac{2\pi j}{N_s}\)</span> and <span class="math notranslate nohighlight">\(r=\frac{2\pi k}{N_r}\)</span> with setting <span class="math notranslate nohighlight">\(N_s = N_r\)</span>. As we are now assuming that <span class="math notranslate nohighlight">\(\Omega\)</span> is the unit disc, it will now be useful to use polar coordinates. We may define <span class="math notranslate nohighlight">\(x=\left(\rho\cos(\theta),\rho\sin(\theta)\right)\)</span> with <span class="math notranslate nohighlight">\(\rho \in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\theta \in [0,2\pi)\)</span>. As we also have the direction of the source, <span class="math notranslate nohighlight">\(s\in[0,2\pi)\)</span> and the direction of our scattering measurement, <span class="math notranslate nohighlight">\(r\in[0,2\pi)\)</span>; it is suggested to use a change of variables<a class="footnote-reference brackets" href="#id5" id="id2">5</a></p>
+<p>As we are dealing with the far field pattern problem, we can approximate <span class="math notranslate nohighlight">\(\Omega\)</span> as the unit disk centred at the origin and can treat <span class="math notranslate nohighlight">\(\hat{s}\)</span> and <span class="math notranslate nohighlight">\(\hat{r}\)</span> as uniformly sampled from <span class="math notranslate nohighlight">\(\mathbb{S}^1\)</span>. We can denote this by setting <span class="math notranslate nohighlight">\(s=\frac{2\pi j}{N_s}\)</span> and <span class="math notranslate nohighlight">\(r=\frac{2\pi k}{N_r}\)</span> with setting <span class="math notranslate nohighlight">\(N_s = N_r\)</span>. As we are now assuming that <span class="math notranslate nohighlight">\(\Omega\)</span> is the unit disc, it will now be useful to use polar coordinates. We may define <span class="math notranslate nohighlight">\(x=\left(\rho\cos(\theta),\rho\sin(\theta)\right)\)</span> with <span class="math notranslate nohighlight">\(\rho \in [0,1]\)</span> and <span class="math notranslate nohighlight">\(\theta \in [0,2\pi)\)</span>. As we also have the direction of the source, <span class="math notranslate nohighlight">\(s\in[0,2\pi)\)</span> and the direction of our scattering measurement, <span class="math notranslate nohighlight">\(r\in[0,2\pi)\)</span>; it is suggested to use a change of variables</p>
 <div class="math notranslate nohighlight">
 \[m=\frac{r+s}{2},h=\frac{r-s}{2}\]</div>
 <p>With <span class="math notranslate nohighlight">\(m,h,r,s\)</span> are all modulo <span class="math notranslate nohighlight">\(2\pi\)</span>. We can also trivially redefine</p>
@@ -287,18 +287,12 @@
 <p>As this is a mapping from a function space to a function space there exists a kernel operator <span class="math notranslate nohighlight">\(K(m,h,\rho,\theta)\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[d_1(m,h) = \int_{0}^{1} \int_{0}^{2\pi} K(m,h,\rho,\theta)\cdot \eta(\rho,\theta)\,\, d\theta \, d\rho\]</div>
-<p>As the external velocity field is constant, <span class="math notranslate nohighlight">\(c_0=1\)</span>, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(h\)</span>.<a class="footnote-reference brackets" href="#id6" id="id3">6</a>
+<p>As the external velocity field is constant, <span class="math notranslate nohighlight">\(c_0=1\)</span>, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(h\)</span>.<a class="footnote-reference brackets" href="#id2" id="id1">2</a>
 This allows us to simplify the system significantly.</p>
 <p>=======================</p>
 <hr class="docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">4</a></span></dt>
-<dd><p>This is related to the boundary conditions and the fact that the interior and exterior solution should be continuous at the boundary when we expand. However, I am still unsure as to how this relates to the expression (1). I am still making my way through Taylor but if there is a more elegant explanation or resource please do link it to me.</p>
-</dd>
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">5</a></span></dt>
-<dd><p>Why do we change our variables in this manner? What is the reason for not just using <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(r\)</span> as they are defined above?</p>
-</dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">6</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
 <dd><p>I understand that the system is fully symmetric with respect to <span class="math notranslate nohighlight">\(s\)</span> as there is not preference to the incidence wave. But surely due to the internal structure of <span class="math notranslate nohighlight">\(\Omega\)</span> would vary with respect to <span class="math notranslate nohighlight">\(r\)</span>. Or in a more to phrase it more mathematically, the variation of <span class="math notranslate nohighlight">\(\eta(\rho,\theta)\)</span> within <span class="math notranslate nohighlight">\(\Omega\)</span> would change <span class="math notranslate nohighlight">\(\hat{u}^s(\rho,\theta)\)</span> so that at a given point <span class="math notranslate nohighlight">\(r\)</span>, we would measure a different wave?</p>
 </dd>
 </dl>
