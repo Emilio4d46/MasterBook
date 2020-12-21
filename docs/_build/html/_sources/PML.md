@@ -2,15 +2,9 @@
 Perfectly Matched Layers
 =======================
 
-  
-
-Before we can start to build and train our model, we first need to get training data that we will train out model with. We can do this either by experimentation or by modelling the forward pass of the wave interacting with the scattering field. The former is likely out of the scope of the budget for this masters project and, most likely, far more difficult. Modelling the forward pass, however, will not only be free but also provide us a greater appreciation and understanding of computational modelling and the problem at hand.
-
-  
+Before we can start to build and train our model, we first need to get training data that we will train out model with. We can do this either by experimentation or by modelling the forward pass of the wave interacting with the scattering field. The former is likely out of the scope of the budget for this masters project and, most likely, far more difficult. Modelling the forward pass, however, will not only be free but also provide us a greater appreciation and understanding of computational modelling and the problem at hand. 
 
 One of the largest issues we will face will be modelling the far field behaviours of the waves as, since we cannot model an infinite area for the waves to move through, we will have to have some form of hard boundary which will cause reflection and interreference with the scattering that we would wish to observe. Typical solutions to problems of this ilk are usually along the lines of either remapping an infinite domain to a finite one, typically via $\tanh$ or by creating a large enough modelling space in which the waves will decay naturally by the boundary. However both of these solutions pose issues when it comes to oscillating waves as remapping them will cause them to oscillate infinitely at the far field and as they only decay with respect to $\frac{1}{r}$ they decay too slowly to model in a reasonable domain. Thankfully, there is a solution proposed in "A perfectly matched layer for the absorption of electromagnetic waves" by Jean-Pierre Berenger in 1994 [^1] dubbed the 'Perfectly Matched Layer' (PML). He proposes a method to model waves going off to $\infty$ independent of test set up. This method proposes applying a totally absorbing boundary layer at the boundary of the modelling domain and the waves in this layer exponentially decay; an issue being that there is almost always some reflection when we change media. However, we may analytically extending the wave equation into the complex plane via a form of coordinate stretching.
-
-  
 
 **Plan for derivation**
 
@@ -18,55 +12,29 @@ One of the largest issues we will face will be modelling the far field behaviour
 
 2. Coordinate Transfer this extended solution back into $\mathbb{R}^d$.
 
-  
-
 We first start with a prototypical wave.
-
-  
 
 $$\nabla\left(a\nabla\cdot u \right) = \frac{1}{b}\left(\frac{\partial^2u}{\partial t^2}\right) = \frac{\ddot{u}}{b} \tag{1}$$
 
-  
+With $u(x,t)$ being a wave of scalar amplitude, $c = \sqrt{ab}$ is the phase velocity for some $a(x)$ and $b(x)$ being properties of the medium.
 
-With $u($**x**$,t)$ being a wave of scalar amplitude, $c = \sqrt{ab}$ is the phase velocity for some $a($**x**$)$ and $b($**x**$)$ being properties of the medium.
+We can then split this into a pair of coupled first order equations via an auxiliary field, $v(x,t)$ with
 
-  
-
-We can then split this into a pair of coupled first order equations via an auxiliary field, $v($**x**,$t)$ with
-
-  
-
-$$\dot{u} = b\nabla\cdot  v\tag{2} \text{ and }v = a\nabla\cdot u$$
-
-  
+$$\dot{u} = b\nabla\cdot v\tag{2} \text{ and } v = a\nabla\cdot u$$
 
 If we have some solution of a wave equation in infinite space, $w(x,t)$ and without loss of generality, a region near the origin that we wish to study - in our case this is $\eta(x)$. In order to apply a PML, we first need to analytically extend our solution to $\mathbb{C}$ within a region near the boundary. We will, for simplicity sake, we will focus on the $\pm x$ direction but it is identical for any other direction.
 
-  
-
 We are able to make one large simplifying assumption from the statement of the problem from the paper - that being that the far field space is homogeneous, linear and time invariant. Under this assumption, radiation sources must take the form of a superposition of plane waves. [We can see this from the form of our scattered waves $u(x)^s$, but this is a general proof/verification of the PML]
 
-  
-
-$$w(x,t) = \sum_{k,\omega}W_{k,\omega}e^{i(k\cdot  x - \omega t)}\tag{3}$$
-
-  
+$$w(x,t) = \sum_{k,\omega}W_{k,\omega}e^{i(k\cdot x - \omega t)}\tag{3}$$
 
 For some constant amplitudes $W_{k,\omega}$ we can decompose and simplify this further
 
-  
-
 $$w(x,t) = W(y,z)e^{i(k\cdot x - \omega t)}\tag{4}$$
 
-  
-
-With $\frac{\omega}{k}$ being the phase velocity (which can be different from the group velocity, $\frac{dω}{dk}$), which we take to be positive as we are moving in the positive direction (in a homogeneous medium, these *in general* have the same sign), so we may take $k$ to be positive.
-
-  
+With $\frac{\omega}{k}$ being the phase velocity (which can be different from the group velocity, $\frac{d\omega}{dk}$), which we take to be positive as we are moving in the positive direction (in a homogeneous medium, these *in general* have the same sign), so we may take $k$ to be positive.
 
 **Analytical Continuation**
-
-  
 
 Thankfully, we do not need to construct an analytic continuation into $\mathbb{C}$ for $(4)$ - our wave equation already has the form of $e^{ix}$ which is famously analytic! So all we need to do is evaluate this $(6)$ along a complex contour so that we can evaluate along some complex numbers. We can construct a very simple contour, where for some point Re$(x)$, for example Re$(x) \geq 3$, we start to add linearly growing complex component - i.e. Im$(x) = it\cdot$Re$(x)$, $t > 0$ for $x \geq 3$. from this we can clearly see that when we evaluate $(6)$ along this contour, $(6)$ exponentially decays, so along this contour the wave appears to be passing through an absorbing material. However, the critical thing to notice is that for Re$(x) < 3$ it acts like a reflectionless absorbing material - the PML. Moreover, the analytical solution satisfies the exact same differential equation, now all we need to do is to solve the differential equation along this new complex contour.
 
@@ -110,7 +78,7 @@ $$Lu:=\left(L_0-\eta(r)\right)u = f$$
 
 We can re-write this into an eaiser form to apply the PML too
 
-$$-\nabla\cdot\left(\nabla u\right) + - \frac{\omega^2}{c^2(r)}u  - \eta(r)u = f$$
+$$-\nabla\cdot\left(\nabla u\right) - \frac{\omega^2}{c^2(r)}u  - \eta(r)u = f \tag{6}$$
 
 We can then construct and apply a similar change of variables as the ones seen above
 
@@ -125,17 +93,35 @@ $$\sigma_{\xi}(\xi) = \sigma_{0,\xi}\left(|\xi|-\xi_0\right)^n$$
 
 With $\xi$ being either $x$ or $y$ and $\sigma_{0,\xi}$ being a constant, and n $\in \mathbb{Z}$. This simplifies the definition of the derivative
 
-$$\frac{\partial x'}{\partial x} = \begin{cases}  
+$$d_x(x)= \begin{cases}  
 1 + \frac{ic^2(x)}{\omega}\sigma_{x}(x) &\text{if } |x| \geq x_0 \\  
 1 &\text{if } |x| < x_0
 \end{cases}$$
 
-And once again similarly for $y$
+And once again similarly for $d_y(y)$
 
--------
+We can clearly see that $\frac{\partial x'}{\partial x} = d_x(x)$ and  $\frac{\partial y'}{\partial y} = d_y(y)$. As per our derivation above we now need to apply a substitution to our original equation in order to incorporate the PML, we can do this by the following:
+
+$$\frac{\partial}{\partial x} \to \frac{\partial}{\partial x'} = \frac{1}{d_x(x)}\frac{\partial}{\partial x}$$
+
+This changes $(6)$ into the following:
+
+$$\frac{1}{d_x(x)}\frac{\partial}{\partial x}\left(\frac{1}{d_x(x)}\frac{\partial u}{\partial x}\right) + \frac{1}{d_y(y)}\frac{\partial}{\partial y}\left(\frac{1}{d_y(y)}\frac{\partial u}{\partial y}\right) - \frac{\omega^2}{c^2(r)}u - \eta(r)u = f $$
+
+We will be writing $d_{\xi}(\xi)$ as $d_{\xi}$ to be more concise. If we group the $d_{\xi}$ terms together we arrive at :
+
+$$\frac{1}{d_x d_y}\left(\frac{1}{\partial x}\left(\frac{d_y}{d_x}\frac{\partial u}{\partial x}\right)+\frac{1}{\partial y}\left(\frac{d_x}{d_y}\frac{\partial u}{\partial y}\right)\right) - \frac{\omega^2}{c^2(r)}u - \eta(r)u = f$$
+
+As $d_x$ is independent of y and $d_y$ is independent of x so we can pass them through the derivatives. Furthermore, defining $\zeta = d_x d_y$ and $A = \begin{pmatrix} \frac{d_y}{d_x} & 0\\ 0 & \frac{d_x}{d_y} \end{pmatrix}$ allows us to radically simplify the expression to:
+
+$$\nabla\cdot\left(A\cdot\nabla\cdotp u\right) -\zeta\left(\frac{\omega^2}{c^2(r)}u + \eta(r)u\right) = \zeta f$$
+
+We can clearly see that setting $\zeta = 1$ and $A = I$ we recover the original equation without the PML. 
 
 [^1]: https://www.sciencedirect.com/science/article/pii/S0021999184711594
 
 [^2]: We may also make the PML of arbitrary size as long as we, correspondingly, make sufficient changes to $\sigma_x(x)$. In general, we make $\sigma_x(x)$ $O(x^2)$ or $O(x^3)$ and the PML about $\frac{\lambda}{2}$ thick. 
 
 [^3]: http://math.mit.edu/~stevenj/18.369/pml.pdf
+
+[^4]: https://liveuclac-my.sharepoint.com/personal/ucahtbe_ucl_ac_uk/Documents/Microsoft%20Teams%20Chat%20Files/monk.pdf
