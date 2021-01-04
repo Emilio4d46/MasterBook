@@ -2,10 +2,11 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 - file: intro
 
-- part: Understanding the Paper
+- part: Main Thread
   chapters:
   - file: scatter_maths
+  - file: PML
+  - file: test_problem  
 - part: Mathematical Supplementals
   chapters:
   - file: taylor_facts
-  - file: PML

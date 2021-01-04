@@ -1,0 +1,438 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Problem &#8212; Solving Wave Scattering using Machine Learning</title>
+    
+  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Key Facts and Theorems" href="taylor_facts.html" />
+    <link rel="prev" title="Perfectly Matched Layers" href="PML.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/logo.png" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Solving Wave Scattering using Machine Learning</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Introduction
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Main Thread
+ </span>
+</p>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="scatter_maths.html">
+   Derivation of Foundational Equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="PML.html">
+   Perfectly Matched Layers
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Test Problem
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Mathematical Supplementals
+ </span>
+</p>
+<ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="taylor_facts.html">
+   Key Facts and Theorems
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/test_problem.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ftest_problem.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/test_problem.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="test-problem">
+<h1>Test Problem<a class="headerlink" href="#test-problem" title="Permalink to this headline">¶</a></h1>
+<p>Now that we have gotten a firm understandting of the PML we can start implementing a forward pass: this is to generate training data for our model. We first, however, implement a test case using the same tools as we hope to in the main problem, NGSolve within Python. The test problem will be to model a plan wave in a simple domain.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> notebook
+<span class="kn">import</span> <span class="nn">netgen.gui</span>
+<span class="kn">from</span> <span class="nn">netgen.geom2d</span> <span class="kn">import</span> <span class="n">SplineGeometry</span>
+<span class="kn">from</span> <span class="nn">ngsolve</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">7</span><span class="n">a1a5f11849a</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">run_line_magic</span><span class="p">(</span><span class="s1">&#39;matplotlib&#39;</span><span class="p">,</span> <span class="s1">&#39;notebook&#39;</span><span class="p">)</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">netgen.gui</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">netgen.geom2d</span> <span class="kn">import</span> <span class="n">SplineGeometry</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">from</span> <span class="nn">ngsolve</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;netgen&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can model the problem as a set of concentric circles with the center most being our region of interest, <span class="math notranslate nohighlight">\(\Omega\)</span>. This is then sourrounded by a ‘normal’ region and then a PLM region.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">geo</span> <span class="o">=</span> <span class="n">SplineGeometry</span><span class="p">()</span>
+<span class="n">geo</span><span class="o">.</span><span class="n">AddCircle</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mf">1.7</span><span class="p">,</span> <span class="n">leftdomain</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="s2">&quot;outerbnd&quot;</span><span class="p">)</span>
+<span class="n">geo</span><span class="o">.</span><span class="n">AddCircle</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mf">1.25</span><span class="p">,</span> <span class="n">leftdomain</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">rightdomain</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="s2">&quot;midbnd&quot;</span><span class="p">)</span>
+<span class="n">geo</span><span class="o">.</span><span class="n">AddCircle</span><span class="p">(</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="n">leftdomain</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rightdomain</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">bc</span><span class="o">=</span><span class="s2">&quot;innerbnd&quot;</span><span class="p">)</span>
+<span class="n">geo</span><span class="o">.</span><span class="n">SetMaterial</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<span class="n">geo</span><span class="o">.</span><span class="n">SetMaterial</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;mid&quot;</span><span class="p">)</span>
+<span class="n">geo</span><span class="o">.</span><span class="n">SetMaterial</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;pmlregion&quot;</span><span class="p">)</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">geo</span><span class="o">.</span><span class="n">GenerateMesh</span> <span class="p">(</span><span class="n">maxh</span><span class="o">=</span><span class="mf">0.05</span><span class="p">))</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">Curve</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">mesh</span><span class="o">.</span><span class="n">SetPML</span><span class="p">(</span><span class="n">pml</span><span class="o">.</span><span class="n">Radial</span><span class="p">(</span><span class="n">rad</span><span class="o">=</span><span class="mf">1.25</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">5</span><span class="n">j</span><span class="p">,</span><span class="n">origin</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)),</span> <span class="s2">&quot;pmlregion&quot;</span><span class="p">)</span> <span class="c1">#Alpha is the strenth of the PML.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can set</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}w(x) = \begin{cases}
+   w_0 &amp;\text{: } x\in\mathbb{R}^3/\Omega \\
+   \tilde{w}(x) &amp;\text{: } x\in\Omega
+\end{cases}\end{split}\]</div>
+<p>to be the wave number. Here we have set our <span class="math notranslate nohighlight">\(\tilde{w}(x)\)</span> to a multivariate Gaussian with equation:</p>
+<div class="math notranslate nohighlight">
+\[\tilde{w}(x) = 50\exp{\left(-\frac{x^2 + y^2}{\log\left({\frac{5}{2}}\right)}\right)}\]</div>
+<p>and for <span class="math notranslate nohighlight">\(w_0(x) = 20\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">omega_0</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">omega_tilde</span> <span class="o">=</span> <span class="mi">50</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(((</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span><span class="o">+</span><span class="p">((</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">2</span><span class="p">))))</span> <span class="c1">#Gaussian function for our test Omega.</span>
+
+<span class="n">domain_values</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;inner&#39;</span><span class="p">:</span> <span class="n">omega_tilde</span><span class="p">,</span> <span class="s1">&#39;mid&#39;</span><span class="p">:</span> <span class="n">omega_0</span><span class="p">,</span> <span class="s1">&#39;pmlregion&#39;</span><span class="p">:</span> <span class="n">omega_0</span><span class="p">}</span>
+<span class="n">values_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">domain_values</span><span class="p">[</span><span class="n">mat</span><span class="p">]</span> <span class="k">for</span> <span class="n">mat</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">GetMaterials</span><span class="p">()]</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">CoefficientFunction</span><span class="p">(</span><span class="n">values_list</span><span class="p">)</span>
+
+<span class="n">Draw</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s1">&#39;piecewise&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can also define the wave as</p>
+<div class="math notranslate nohighlight">
+\[u(x) = u^\text{inc}(x) + u^{\text{s}}(x)\]</div>
+<p>with <span class="math notranslate nohighlight">\(u^\text{inc}(x)\)</span> being the incident wave and <span class="math notranslate nohighlight">\(u^{\text{s}}(x)\)</span> being the scattered wave. With</p>
+<div class="math notranslate nohighlight">
+\[u^\text{inc}(x) = e^{iw_0d\cdot x}\]</div>
+<p>With <span class="math notranslate nohighlight">\(d\)</span> being a direction vector and <span class="math notranslate nohighlight">\(\|d\|_2 = 1\)</span>, or in other words, <span class="math notranslate nohighlight">\(d\in\mathbb{S}^1\)</span>. We then apply <span class="math notranslate nohighlight">\(u(x)\)</span> to a Helmholtz Equation:</p>
+<div class="math notranslate nohighlight">
+\[\Delta u(x) + w^2(x)u(x) = 0\]</div>
+<p>We wish to solve an inhomogenous Helmholtz euqation, <span class="math notranslate nohighlight">\(\Delta u(x) + \omega^2u(x) = f(x)\)</span>, so that we can use classiacal finite element methods. We can do this by expanding it via <span class="math notranslate nohighlight">\(u(x) = u^\text{inc}(x) + u^{\text{s}}(x)\)</span>. This gives us:</p>
+<div class="math notranslate nohighlight">
+\[\Delta\left(u^\text{inc}(x) + u^{\text{s}}(x)\right) + w^2(x)\left(u^\text{inc}(x) + u^{\text{s}}(x)\right) = 0\]</div>
+<p>Rewriting this with the terms of the scattered wave on the left hand side and with the incident wave on the right hand side we get:</p>
+<div class="math notranslate nohighlight">
+\[\Delta u^\text{s}(x) + w^2(x)u^{\text{s}}(x) = \underbrace{-\left(\Delta u^\text{inc}(x) + w^2(x)u^{\text{inc}}(x)\right)}_{f(x)}\]</div>
+<p>As we know that <span class="math notranslate nohighlight">\(u^\text{inc}(x) = e^{iw_0d\cdot x}\)</span>, so, <span class="math notranslate nohighlight">\(\Delta u^\text{inc}(x) = -w_0^2(x)u^{\text{inc}}(x)\)</span>. This allows us to re-write <span class="math notranslate nohighlight">\(f(x)\)</span> and the problem as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta u^\text{s}(x) + w^2(x)u^{\text{s}}(x) = -u^\text{inc}(x)\left(\omega^2 - \omega_0^2\right)\]</div>
+<p>Which we can solve using classiacal finite element methods.</p>
+<p><em><strong>Note</strong>: We can observe that the right hand side only has support in <span class="math notranslate nohighlight">\(\Omega\)</span> as outside of <span class="math notranslate nohighlight">\(\Omega\)</span> we have that <span class="math notranslate nohighlight">\(w(x) = w_0\)</span>, hence <span class="math notranslate nohighlight">\(f(x) = 0\)</span>.</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fes</span> <span class="o">=</span> <span class="n">H1</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="nb">complex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="n">u_in</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega_0</span><span class="o">*</span><span class="p">(</span><span class="mi">3</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">4</span><span class="o">/</span><span class="mi">5</span><span class="o">*</span><span class="n">y</span><span class="p">))</span> <span class="c1">#Can use any vector as long as it is on the unit circle. </span>
+
+<span class="c1">#Defining our test and solution functions.</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">fes</span><span class="o">.</span><span class="n">TrialFunction</span><span class="p">()</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">fes</span><span class="o">.</span><span class="n">TestFunction</span><span class="p">()</span>
+
+<span class="c1">#Defining our LHS of the problem.</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">BilinearForm</span><span class="p">(</span><span class="n">fes</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="n">grad</span><span class="p">(</span><span class="n">u</span><span class="p">)</span><span class="o">*</span><span class="n">grad</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">*</span><span class="n">dx</span> <span class="o">-</span> <span class="n">omega</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">v</span><span class="o">*</span><span class="n">dx</span>
+<span class="n">a</span> <span class="o">+=</span> <span class="o">-</span><span class="n">omega</span><span class="o">*</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">u</span><span class="o">*</span><span class="n">v</span> <span class="o">*</span> <span class="n">ds</span><span class="p">(</span><span class="s2">&quot;innerbnd&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+
+<span class="c1">#Defining the RHS of our problem.</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">LinearForm</span><span class="p">(</span><span class="n">fes</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">+=</span> <span class="n">u_in</span> <span class="o">*</span> <span class="p">(</span><span class="n">omega</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">omega_0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">v</span> <span class="o">*</span> <span class="n">dx</span>
+<span class="n">f</span><span class="o">.</span><span class="n">Assemble</span><span class="p">()</span>
+
+<span class="c1">#Solving our problem.</span>
+<span class="n">u_s</span> <span class="o">=</span> <span class="n">GridFunction</span><span class="p">(</span><span class="n">fes</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;u&quot;</span><span class="p">)</span>
+<span class="n">u_s</span><span class="o">.</span><span class="n">vec</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">mat</span><span class="o">.</span><span class="n">Inverse</span><span class="p">()</span> <span class="o">*</span> <span class="n">f</span><span class="o">.</span><span class="n">vec</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Draw</span> <span class="p">(</span><span class="n">u_in</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;u_in&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Draw</span><span class="p">(</span><span class="n">u_s</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;u_s&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Draw</span><span class="p">(</span><span class="n">u_in</span> <span class="o">+</span> <span class="n">u_s</span><span class="p">,</span> <span class="n">mesh</span><span class="p">,</span> <span class="s2">&quot;u_tot&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+    <a class='left-prev' id="prev-link" href="PML.html" title="previous page">Perfectly Matched Layers</a>
+    <a class='right-next' id="next-link" href="taylor_facts.html" title="next page">Key Facts and Theorems</a>
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Emilio McAllister Fognini<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
