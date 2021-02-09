@@ -6,7 +6,8 @@
   chapters:
   - file: scatter_maths
   - file: PML
-  - file: test_problem  
+  - file: test_problem
+  - file: full_first_comp
 - part: Mathematical Supplementals
   chapters:
   - file: taylor_facts

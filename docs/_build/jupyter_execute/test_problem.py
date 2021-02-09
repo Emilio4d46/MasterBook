@@ -14,6 +14,7 @@ import netgen.gui
 from netgen.geom2d import SplineGeometry
 from ngsolve import *
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 # We can model the problem as a set of concentric circles with the center most being our region of interest, $\Omega$. This is then sourrounded by a 'normal' region and then a PLM region.
@@ -22,38 +23,32 @@ import matplotlib.pyplot as plt
 
 
 geo = SplineGeometry()
-geo.AddCircle( (0,0), 1.7, leftdomain=3, bc="outerbnd")
-geo.AddCircle( (0,0), 1.25, leftdomain=2, rightdomain=3, bc="midbnd")
+geo.AddCircle( (0,0), 2.25, leftdomain=3, bc="outerbnd")
+geo.AddCircle( (0,0), 1.75, leftdomain=2, rightdomain=3, bc="midbnd")
 geo.AddCircle( (0,0), 1, leftdomain=1, rightdomain=2, bc="innerbnd")
 geo.SetMaterial(1, "inner")
 geo.SetMaterial(2, "mid")
 geo.SetMaterial(3, "pmlregion")
-mesh = Mesh(geo.GenerateMesh (maxh=0.05))
+mesh = Mesh(geo.GenerateMesh (maxh=0.1))
 mesh.Curve(3)
 
-mesh.SetPML(pml.Radial(rad=1.25,alpha=5j,origin=(0,0)), "pmlregion") #Alpha is the strenth of the PML.
+mesh.SetPML(pml.Radial(rad=1.75,alpha=1j,origin=(0,0)), "pmlregion") #Alpha is the strenth of the PML.
 
 
 # We can set
 # 
-# $$w(x) = \begin{cases}
-#    w_0 &\text{: } x\in\mathbb{R}^3/\Omega \\
-#    \tilde{w}(x) &\text{: } x\in\Omega
+# $$c(x) = \begin{cases}
+#    1 &\text{: } x\in\mathbb{R}^2/\Omega \\
+#    100 &\text{: } x\in\Omega
 # \end{cases}$$
 # 
-# to be the wave number. Here we have set our $\tilde{w}(x)$ to a multivariate Gaussian with equation:
-# 
-# $$\tilde{w}(x) = 50\exp{\left(-\frac{x^2 + y^2}{\log\left({\frac{5}{2}}\right)}\right)}$$
-# 
-# and for $w_0(x) = 20$
+# and for $\omega(x) = 20$
 
-# In[12]:
+# In[3]:
 
-
-import numpy as np
 
 omega_0 = 20
-omega_tilde = 50*exp(-(((x*x)*np.log(5/2))+((y*y)*np.log(5/2)))) #Gaussian function for our test Omega.
+omega_tilde = 0.2 #-18.5*exp(-(x**2+y**2)) + 20 #70*exp(-(((x*x)*np.log(7/2))+((y*y)*np.log(7/2)))) #Gaussian function for our test Omega.
 
 domain_values = {'inner': omega_tilde, 'mid': omega_0, 'pmlregion': omega_0}
 values_list = [domain_values[mat] for mat in mesh.GetMaterials()]
@@ -90,47 +85,109 @@ Draw(omega, mesh, 'piecewise')
 # 
 # _**Note**: We can observe that the right hand side only has support in $\Omega$ as outside of $\Omega$ we have that $w(x) = w_0$, hence $f(x) = 0$._
 
-# In[ ]:
+# In[4]:
 
 
 fes = H1(mesh, complex=True, order=5)
 
-u_in = exp(1j*omega_0*(3/5*x + 4/5*y)) #Can use any vector as long as it is on the unit circle. 
+def forward_pass(theta):
 
-#Defining our test and solution functions.
-u = fes.TrialFunction()
-v = fes.TestFunction()
+    u_in =exp(1j*omega_0*(cos(theta)*x + sin(theta)*y)) #Can use any vector as long as it is on the unit circle. 
 
-#Defining our LHS of the problem.
-a = BilinearForm(fes)
-a += grad(u)*grad(v)*dx - omega**2*u*v*dx
-a += -omega*1j*u*v * ds("innerbnd")
-a.Assemble()
+    #Defining our test and solution functions.
+    u = fes.TrialFunction()
+    v = fes.TestFunction()
 
-#Defining the RHS of our problem.
-f = LinearForm(fes)
-f += u_in * (omega**2 - omega_0**2) * v * dx
-f.Assemble()
+    #Defining our LHS of the problem.
+    a = BilinearForm(fes)
+    a += grad(u)*grad(v)*dx - omega**2*u*v*dx
+    a += -omega*1j*u*v * ds("innerbnd")
+    a.Assemble()
 
-#Solving our problem.
-u_s = GridFunction(fes, name="u")
-u_s.vec.data = a.mat.Inverse() * f.vec
+    #Defining the RHS of our problem.
+    f = LinearForm(fes)
+    f += -u_in * (omega**2 - omega_0**2) * v * dx
+    f.Assemble()
+
+    #Solving our problem.
+    u_s = GridFunction(fes, name="u")
+    u_s.vec.data = a.mat.Inverse() * f.vec
+
+    u_tot = u_in + u_s
+    
+    return [u_in, u_s, u_tot]
+
+s = 1*np.pi
+
+calc = forward_pass(s)
+u_in = calc[0]
+u_s = calc[1]
+u_tot = calc[2]
 
 
-# In[14]:
+# In[5]:
 
 
-Draw (u_in, mesh, "u_in")
-
-
-# In[15]:
-
-
+Draw(u_in, mesh, "u_in")
 Draw(u_s, mesh, "u_s")
+Draw(u_tot, mesh, "u_tot")
 
 
-# In[16]:
+# We can now start to compare between the far field of the wave as computed via the PML and the first order approximation that was used in the original paper. This far field approximation is namely
+# 
+# $$\hat{u}^s(r) = \int_{\Omega}e^{-i\omega_0(\hat{r} - \hat{s})\cdot x}\eta(x)\,dx$$
+# 
+# Which is over $\Omega$ as $\eta(x)$ is only supported in $\Omega$. While for the full far field wave we can use the following equation
+# 
+# $$u^s_{\infty}(\hat{r}) = \dfrac{e^{\frac{\pi i}{4}}}{\sqrt{8\pi k}} \int_{\partial\Omega}u(x)\dfrac{\partial e^{-i\omega_0\hat{r}\cdot x}}{\partial n} - \dfrac{\partial u(x)}{\partial n}e^{-i\omega_0\hat{r}\cdot x}\,dS(x)$$
+# 
+# We can use NGSolve to compute both of these and comapre the result.
+
+# In[8]:
 
 
-Draw(u_in + u_s, mesh, "u_tot")
+def ff_field(r):
+    
+    n = specialcf.normal(2)
+    us_n = BoundaryFromVolumeCF(Grad(u_s)*n)
+    ecomp = exp(-1j*omega_0*(cos(r)*x + sin(r)*y))
+    ecomp_n = CoefficientFunction((ecomp.Diff(x),ecomp.Diff(y)))*n
+    
+    temp = Integrate(u_s*ecomp_n - us_n*ecomp, mesh,definedon=mesh.Boundaries("innerbnd"))
+    
+    return (exp(1j*r)/np.sqrt(8*np.pi*omega_0))*temp
+
+theta = np.arange(0, 2*np.pi, 0.01)
+
+mag1 = []
+
+for r in theta:
+    
+    mag1.append(abs(ff_field(r)))
+    
+    
+fig = plt.figure(figsize=(9, 5))
+
+ax = plt.subplot(1, 1, 1, projection='polar')
+
+plt.title('Full Far-field pattern for s = pi')
+
+ax.plot(theta, mag1)
+ax.set_rmax(abs(ff_field(s)))
+ax.set_rlabel_position(-22.5)  # Move radial labels away from plotted line
+ax.grid(True)
+
+plt.show()
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
