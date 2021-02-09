@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfectly Matched Layers &#8212; Solving Wave Scattering using Machine Learning</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -113,6 +113,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="test_problem.html">
    Test Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="full_first_comp.html">
+   Integral Comparison
   </a>
  </li>
 </ul>
@@ -218,7 +223,7 @@
   <div class="section" id="perfectly-matched-layers">
 <h1>Perfectly Matched Layers<a class="headerlink" href="#perfectly-matched-layers" title="Permalink to this headline">¶</a></h1>
 <p>Before we can start to build and train our model, we first need to get training data that we will train out model with. We can do this either by experimentation or by modelling the forward pass of the wave interacting with the scattering field. The former is likely out of the scope of the budget for this masters project and, most likely, far more difficult. Modelling the forward pass, however, will not only be free but also provide us a greater appreciation and understanding of computational modelling and the problem at hand.</p>
-<p>One of the largest issues we will face will be modelling the far field behaviours of the waves as, since we cannot model an infinite area for the waves to move through, we will have to have some form of hard boundary which will cause reflection and interreference with the scattering that we would wish to observe. Typical solutions to problems of this ilk are usually along the lines of either remapping an infinite domain to a finite one, typically via <span class="math notranslate nohighlight">\(\tanh\)</span> or by creating a large enough modelling space in which the waves will decay naturally by the boundary. However both of these solutions pose issues when it comes to oscillating waves as remapping them will cause them to oscillate infinitely at the far field and as they only decay with respect to <span class="math notranslate nohighlight">\(\frac{1}{r}\)</span> they decay too slowly to model in a reasonable domain. Thankfully, there is a solution proposed in “A perfectly matched layer for the absorption of electromagnetic waves” by Jean-Pierre Berenger in 1994 <a class="footnote-reference brackets" href="#id4" id="id1">4</a> dubbed the ‘Perfectly Matched Layer’ (PML). He proposes a method to model waves going off to <span class="math notranslate nohighlight">\(\infty\)</span> independent of test set up. This method proposes applying a totally absorbing boundary layer at the boundary of the modelling domain and the waves in this layer exponentially decay; an issue being that there is almost always some reflection when we change media. However, we may analytically extending the wave equation into the complex plane via a form of coordinate stretching.</p>
+<p>One of the largest issues we will face will be modelling the far field behaviours of the waves as, since we cannot model an infinite area for the waves to move through, we will have to have some form of hard boundary which will cause reflection and interreference with the scattering that we would wish to observe. Typical solutions to problems of this ilk are usually along the lines of either remapping an infinite domain to a finite one, typically via <span class="math notranslate nohighlight">\(\tanh\)</span> or by creating a large enough modelling space in which the waves will decay naturally by the boundary. However both of these solutions pose issues when it comes to oscillating waves as remapping them will cause them to oscillate infinitely at the far field and as they only decay with respect to <span class="math notranslate nohighlight">\(\frac{1}{r}\)</span> they decay too slowly to model in a reasonable domain. Thankfully, there is a solution proposed in “A perfectly matched layer for the absorption of electromagnetic waves” by Jean-Pierre Berenger in 1994 <a class="footnote-reference brackets" href="#id4" id="id1">1</a> dubbed the ‘Perfectly Matched Layer’ (PML). He proposes a method to model waves going off to <span class="math notranslate nohighlight">\(\infty\)</span> independent of test set up. This method proposes applying a totally absorbing boundary layer at the boundary of the modelling domain and the waves in this layer exponentially decay; an issue being that there is almost always some reflection when we change media. However, we may analytically extending the wave equation into the complex plane via a form of coordinate stretching.</p>
 <p><strong>Plan for derivation</strong></p>
 <ol class="simple">
 <li><p>Analytically continue solution to the wave equation into <span class="math notranslate nohighlight">\(\mathbb{C}\)</span>.</p></li>
@@ -249,10 +254,10 @@
 <div class="math notranslate nohighlight">
 \[\frac{\partial}{\partial x} \mapsto \frac{1}{1 + i\frac{\sigma_x(x)}{w}}\frac{\partial}{\partial x}\tag{5}\]</div>
 <p>Here, we can see that for the regions where <span class="math notranslate nohighlight">\(\sigma_x(x) &gt; 0\)</span> that our solutions of the form (4) will decay exponentially by the contour deformation. While for <span class="math notranslate nohighlight">\(\sigma_x(x) = 0\)</span> we get that <span class="math notranslate nohighlight">\(\frac{\partial}{\partial x}  = \frac{\partial}{\partial x}\)</span>. Thanks to this, we do not get any reflections at the boundary of the PML as it is just an analytic continuation of the function into the complex plane, from <span class="math notranslate nohighlight">\(x\)</span> to <span class="math notranslate nohighlight">\(\tilde{x}\)</span>, and so when <span class="math notranslate nohighlight">\(x = \tilde{x}\)</span>, our original solution remains the same.</p>
-<p>Once we have applied <span class="math notranslate nohighlight">\((5)\)</span> we may then truncate the computational region at some sufficiently large <span class="math notranslate nohighlight">\(x\)</span> outside of our domain of interest - such as with a hard wall or a Dirichlet boundary. This is as, thanks to the PML, if a wave is reflected by the boundary it will be attenuated by the PML <a class="footnote-reference brackets" href="#id5" id="id2">5</a> a second time before being allowed into the region of interest - so it will have a negligible amplitude.</p>
+<p>Once we have applied <span class="math notranslate nohighlight">\((5)\)</span> we may then truncate the computational region at some sufficiently large <span class="math notranslate nohighlight">\(x\)</span> outside of our domain of interest - such as with a hard wall or a Dirichlet boundary. This is as, thanks to the PML, if a wave is reflected by the boundary it will be attenuated by the PML <a class="footnote-reference brackets" href="#id5" id="id2">2</a> a second time before being allowed into the region of interest - so it will have a negligible amplitude.</p>
 <p><strong>Other Directions</strong></p>
 <p>The final direction we wish to check is <span class="math notranslate nohighlight">\(-x\)</span> as all other directions are similar to the derivation to the <span class="math notranslate nohighlight">\(x\)</span> direction. This is also fairly simple however, apply <span class="math notranslate nohighlight">\((5)\)</span> but with <span class="math notranslate nohighlight">\(\sigma_x(x) &gt; 0\)</span> for sufficiently negative <span class="math notranslate nohighlight">\(x\)</span> as well. This still works as, for <span class="math notranslate nohighlight">\(-x\)</span>, we have <span class="math notranslate nohighlight">\(k&lt;0\)</span>  and so within our PML region our wave solution still attenuates. Using similar conditions we can now generalise to <span class="math notranslate nohighlight">\(\pm y, \pm z\)</span>.</p>
-<p>As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of <span class="math notranslate nohighlight">\((5)\)</span>. This was done to make out attenuation frequency independent, however expressing <span class="math notranslate nohighlight">\(\frac{1}{\omega}\)</span> in the time domain may cause some challenges as we don’t have <span class="math notranslate nohighlight">\(\omega\)</span> separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed<span class="math notranslate nohighlight">\(\omega\)</span> - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson<a class="footnote-reference brackets" href="#id6" id="id3">6</a>, the foundation of my understanding of the PML derivation.</p>
+<p>As we have done the above solution within the frequency domain, there may issues in generalising this to a time domain, as we chose a transformation of the form of <span class="math notranslate nohighlight">\((5)\)</span>. This was done to make out attenuation frequency independent, however expressing <span class="math notranslate nohighlight">\(\frac{1}{\omega}\)</span> in the time domain may cause some challenges as we don’t have <span class="math notranslate nohighlight">\(\omega\)</span> separate in the time-domain since the wave function may superimpose multiple frequencies at once. This is not an issue for us as we are dealing with a fixed<span class="math notranslate nohighlight">\(\omega\)</span> - however the more general case may be solved via the use of another auxiliary differential equation. This full derivation can be seen from the notes from Steven G. Johnson<a class="footnote-reference brackets" href="#id6" id="id3">3</a>, the foundation of my understanding of the PML derivation.</p>
 <p>Now we wish to apply this idea of a PML to the forward pass that discussed in a previous section, namely the inhomogeneous equation:</p>
 <div class="math notranslate nohighlight">
 \[Lu:= \left(-\Delta - \frac{\omega^2}{c^2(x)}\right)\]</div>
@@ -298,16 +303,16 @@ x &amp;\text{if } |x| &lt; x_0
 <div class="math notranslate nohighlight">
 \[\nabla\cdot\left(A\cdot\nabla\cdotp u\right) -\zeta\left(\frac{\omega^2}{c^2(r)}u + \eta(r)u\right) = \zeta f\]</div>
 <p>We can clearly see that setting <span class="math notranslate nohighlight">\(\zeta = 1\)</span> and <span class="math notranslate nohighlight">\(A = I\)</span> we recover the original equation without the PML.</p>
-<hr class="docutils" />
+<hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">4</a></span></dt>
-<dd><p>https://www.sciencedirect.com/science/article/pii/S0021999184711594</p>
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p><a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S0021999184711594">https://www.sciencedirect.com/science/article/pii/S0021999184711594</a></p>
 </dd>
-<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">5</a></span></dt>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>We may also make the PML of arbitrary size as long as we, correspondingly, make sufficient changes to <span class="math notranslate nohighlight">\(\sigma_x(x)\)</span>. In general, we make <span class="math notranslate nohighlight">\(\sigma_x(x)\)</span> <span class="math notranslate nohighlight">\(O(x^2)\)</span> or <span class="math notranslate nohighlight">\(O(x^3)\)</span> and the PML about <span class="math notranslate nohighlight">\(\frac{\lambda}{2}\)</span> thick.</p>
 </dd>
-<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">6</a></span></dt>
-<dd><p>http://math.mit.edu/~stevenj/18.369/pml.pdf</p>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p><a class="reference external" href="http://math.mit.edu/~stevenj/18.369/pml.pdf">http://math.mit.edu/~stevenj/18.369/pml.pdf</a></p>
 </dd>
 </dl>
 </div>
@@ -361,7 +366,7 @@ x &amp;\text{if } |x| &lt; x_0
     </div>
 
     
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     

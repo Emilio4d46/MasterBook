@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Derivation of Foundational Equations &#8212; Solving Wave Scattering using Machine Learning</title>
     
-  <link rel="stylesheet" href="_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
     
   <link rel="stylesheet"
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.3da636dd464baa7582d2.js">
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -113,6 +113,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="test_problem.html">
    Test Problem
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="full_first_comp.html">
+   Integral Comparison
   </a>
  </li>
 </ul>
@@ -291,12 +296,12 @@
 <p>As this is a mapping from a function space to a function space there exists a kernel operator <span class="math notranslate nohighlight">\(K(m,h,\rho,\theta)\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[d_1(m,h) = \int_{0}^{1} \int_{0}^{2\pi} K(m,h,\rho,\theta)\cdot \eta(\rho,\theta)\,\, d\theta \, d\rho\]</div>
-<p>As the external velocity field is constant, <span class="math notranslate nohighlight">\(c_0=1\)</span>, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(h\)</span>.<a class="footnote-reference brackets" href="#id2" id="id1">2</a>
+<p>As the external velocity field is constant, <span class="math notranslate nohighlight">\(c_0=1\)</span>, and the problem is defined on the unit disc centred at the origin; the system is symmetric with respect to <span class="math notranslate nohighlight">\(m\)</span> and <span class="math notranslate nohighlight">\(h\)</span>.<a class="footnote-reference brackets" href="#id2" id="id1">1</a>
 This allows us to simplify the system significantly.</p>
 <p>=======================</p>
-<hr class="docutils" />
+<hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">2</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>I understand that the system is fully symmetric with respect to <span class="math notranslate nohighlight">\(s\)</span> as there is not preference to the incidence wave. But surely due to the internal structure of <span class="math notranslate nohighlight">\(\Omega\)</span> would vary with respect to <span class="math notranslate nohighlight">\(r\)</span>. Or in a more to phrase it more mathematically, the variation of <span class="math notranslate nohighlight">\(\eta(\rho,\theta)\)</span> within <span class="math notranslate nohighlight">\(\Omega\)</span> would change <span class="math notranslate nohighlight">\(\hat{u}^s(\rho,\theta)\)</span> so that at a given point <span class="math notranslate nohighlight">\(r\)</span>, we would measure a different wave?</p>
 </dd>
 </dl>
@@ -351,7 +356,7 @@ This allows us to simplify the system significantly.</p>
     </div>
 
     
-  <script src="_static/js/index.3da636dd464baa7582d2.js"></script>
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
 
 
     
